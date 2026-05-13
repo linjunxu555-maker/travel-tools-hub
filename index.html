@@ -1,0 +1,1228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TravelKit — Free Travel Tools for Smart Travelers</title>
+  <meta name="description" content="Free travel tools: Jet Lag Calculator, Baggage Fee Calculator, Tip Calculator by Country, Packing List Generator, and Travel Budget Calculator. Plan smarter trips.">
+  <meta name="keywords" content="jet lag calculator, baggage fee calculator, tip calculator by country, packing list generator, travel budget calculator">
+  <meta property="og:title" content="TravelKit — Free Travel Tools">
+  <meta property="og:description" content="5 essential travel tools to help you plan smarter trips. Free, fast, no signup needed.">
+  <meta property="og:type" content="website">
+  <link rel="canonical" href="https://yourdomain.com/">
+
+  <!-- Google AdSense placeholder — replace with your code -->
+  <!-- <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX" crossorigin="anonymous"></script> -->
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --sand: #F5EFE0;
+      --sand-dark: #EDE4CE;
+      --coral: #E85D3A;
+      --coral-light: #F07A5E;
+      --teal: #2A7F6F;
+      --teal-light: #3BA08E;
+      --amber: #D4920A;
+      --night: #1A1A2E;
+      --night-soft: #2D2D44;
+      --text: #2C2C2C;
+      --text-muted: #6B6B6B;
+      --white: #FFFFFF;
+      --radius: 16px;
+      --radius-sm: 10px;
+      --shadow: 0 4px 24px rgba(0,0,0,0.08);
+      --shadow-lg: 0 12px 48px rgba(0,0,0,0.14);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--sand);
+      color: var(--text);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* NAV */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(245,239,224,0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(0,0,0,0.07);
+      padding: 0 24px;
+      display: flex; align-items: center; justify-content: space-between;
+      height: 60px;
+    }
+    .nav-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 22px; font-weight: 700;
+      color: var(--night); cursor: pointer;
+      display: flex; align-items: center; gap: 8px;
+    }
+    .nav-logo span { color: var(--coral); }
+    .nav-tools {
+      display: flex; gap: 4px; flex-wrap: wrap;
+    }
+    .nav-btn {
+      font-size: 12px; font-weight: 500;
+      padding: 5px 12px; border-radius: 99px;
+      border: 1.5px solid transparent;
+      background: transparent; cursor: pointer;
+      color: var(--text-muted); transition: all .2s;
+    }
+    .nav-btn:hover { color: var(--coral); border-color: var(--coral); background: rgba(232,93,58,0.06); }
+    .nav-btn.active { background: var(--coral); color: white; border-color: var(--coral); }
+
+    /* PAGES */
+    .page { display: none; animation: fadeUp .4s ease; }
+    .page.active { display: block; }
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(16px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* HERO */
+    .hero {
+      background: var(--night);
+      padding: 72px 24px 80px;
+      text-align: center;
+      position: relative; overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(232,93,58,0.25), transparent),
+                  radial-gradient(ellipse 50% 40% at 80% 80%, rgba(42,127,111,0.2), transparent);
+    }
+    .hero-tag {
+      display: inline-block;
+      background: rgba(232,93,58,0.18); color: #F07A5E;
+      font-size: 12px; font-weight: 600; letter-spacing: .08em;
+      text-transform: uppercase; padding: 4px 14px; border-radius: 99px;
+      border: 1px solid rgba(232,93,58,0.3); margin-bottom: 20px;
+      position: relative;
+    }
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(36px, 6vw, 68px); font-weight: 700;
+      color: white; line-height: 1.1; margin-bottom: 20px;
+      position: relative;
+    }
+    .hero h1 em { color: var(--coral); font-style: normal; }
+    .hero p {
+      font-size: 17px; color: rgba(255,255,255,0.65);
+      max-width: 520px; margin: 0 auto 36px; line-height: 1.7;
+      position: relative;
+    }
+    .hero-cards {
+      display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;
+      position: relative;
+    }
+    .hero-card {
+      background: rgba(255,255,255,0.08); backdrop-filter: blur(8px);
+      border: 1px solid rgba(255,255,255,0.12); border-radius: var(--radius);
+      padding: 20px 24px; cursor: pointer; transition: all .25s;
+      text-align: left; min-width: 160px;
+    }
+    .hero-card:hover { background: rgba(255,255,255,0.14); transform: translateY(-4px); border-color: rgba(232,93,58,0.5); }
+    .hero-card-icon { font-size: 28px; margin-bottom: 10px; }
+    .hero-card-name { font-size: 13px; font-weight: 600; color: white; }
+    .hero-card-desc { font-size: 11px; color: rgba(255,255,255,0.5); margin-top: 3px; }
+
+    /* AD BANNER */
+    .ad-banner {
+      background: var(--sand-dark); border: 1px dashed rgba(0,0,0,0.15);
+      text-align: center; padding: 20px; margin: 24px auto;
+      max-width: 728px; border-radius: var(--radius-sm);
+      font-size: 12px; color: var(--text-muted);
+    }
+
+    /* TOOL PAGE LAYOUT */
+    .tool-wrap {
+      max-width: 780px; margin: 0 auto; padding: 40px 20px 80px;
+    }
+    .tool-header { margin-bottom: 32px; }
+    .tool-breadcrumb {
+      font-size: 12px; color: var(--text-muted); margin-bottom: 10px;
+      cursor: pointer; display: inline-flex; align-items: center; gap: 5px;
+    }
+    .tool-breadcrumb:hover { color: var(--coral); }
+    .tool-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(28px, 5vw, 42px); font-weight: 700; line-height: 1.15;
+      margin-bottom: 10px;
+    }
+    .tool-subtitle { font-size: 15px; color: var(--text-muted); line-height: 1.6; }
+
+    /* CARD */
+    .card {
+      background: white; border-radius: var(--radius);
+      box-shadow: var(--shadow); padding: 28px; margin-bottom: 20px;
+    }
+    .card-title {
+      font-size: 14px; font-weight: 600; text-transform: uppercase;
+      letter-spacing: .06em; color: var(--text-muted); margin-bottom: 20px;
+    }
+
+    /* FORM ELEMENTS */
+    label { font-size: 13px; font-weight: 500; color: var(--text); display: block; margin-bottom: 6px; }
+    input, select, textarea {
+      width: 100%; padding: 12px 16px;
+      border: 1.5px solid #E0D8C8; border-radius: var(--radius-sm);
+      font-family: 'DM Sans', sans-serif; font-size: 14px;
+      background: white; color: var(--text);
+      transition: border-color .2s; outline: none;
+      appearance: none;
+    }
+    input:focus, select:focus { border-color: var(--coral); }
+    .form-row { margin-bottom: 18px; }
+    .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    @media(max-width:520px) { .form-grid { grid-template-columns: 1fr; } }
+
+    /* BUTTON */
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+      padding: 14px 28px; border-radius: 99px;
+      font-family: 'DM Sans', sans-serif; font-size: 14px; font-weight: 600;
+      cursor: pointer; border: none; transition: all .2s;
+    }
+    .btn-primary { background: var(--coral); color: white; }
+    .btn-primary:hover { background: var(--coral-light); transform: translateY(-1px); box-shadow: 0 6px 20px rgba(232,93,58,0.3); }
+    .btn-teal { background: var(--teal); color: white; }
+    .btn-teal:hover { background: var(--teal-light); transform: translateY(-1px); }
+    .btn-outline {
+      background: transparent; color: var(--coral);
+      border: 1.5px solid var(--coral);
+    }
+    .btn-outline:hover { background: var(--coral); color: white; }
+    .btn-full { width: 100%; }
+
+    /* RESULT BOX */
+    .result-box {
+      background: linear-gradient(135deg, var(--night) 0%, var(--night-soft) 100%);
+      border-radius: var(--radius); padding: 28px; color: white;
+      margin-bottom: 20px; display: none;
+    }
+    .result-box.show { display: block; animation: fadeUp .35s ease; }
+    .result-label { font-size: 12px; text-transform: uppercase; letter-spacing: .08em; color: rgba(255,255,255,0.5); margin-bottom: 6px; }
+    .result-value { font-family: 'Playfair Display', serif; font-size: 42px; font-weight: 700; color: white; }
+    .result-sub { font-size: 14px; color: rgba(255,255,255,0.6); margin-top: 6px; }
+    .result-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 16px; margin-top: 16px; }
+    .result-item { background: rgba(255,255,255,0.08); border-radius: var(--radius-sm); padding: 14px; }
+    .result-item .result-label { margin-bottom: 4px; }
+    .result-item .result-value { font-size: 24px; }
+
+    /* TAG PILLS */
+    .pill-group { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 8px; }
+    .pill {
+      font-size: 12px; font-weight: 500; padding: 5px 12px; border-radius: 99px;
+      background: var(--sand); color: var(--text); cursor: pointer;
+      border: 1.5px solid transparent; transition: all .15s;
+    }
+    .pill:hover, .pill.active { background: var(--coral); color: white; border-color: var(--coral); }
+    .pill.teal { background: rgba(42,127,111,0.1); color: var(--teal); }
+    .pill.teal:hover, .pill.teal.active { background: var(--teal); color: white; }
+
+    /* CHECKLIST */
+    .checklist { list-style: none; }
+    .checklist li {
+      display: flex; align-items: center; gap: 12px;
+      padding: 8px 0; border-bottom: 1px solid var(--sand);
+      font-size: 14px; cursor: pointer; transition: opacity .15s;
+    }
+    .checklist li:last-child { border-bottom: none; }
+    .check-circle {
+      width: 22px; height: 22px; border-radius: 50%;
+      border: 2px solid #CFC9BA; flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+      transition: all .2s;
+    }
+    .checklist li.done .check-circle { background: var(--teal); border-color: var(--teal); }
+    .checklist li.done .check-circle::after { content: '✓'; font-size: 11px; color: white; font-weight: 700; }
+    .checklist li.done span { text-decoration: line-through; opacity: 0.5; }
+
+    /* SECTION DIVIDER */
+    .section-label {
+      font-size: 11px; font-weight: 700; text-transform: uppercase;
+      letter-spacing: .1em; color: var(--coral); margin: 24px 0 10px;
+    }
+
+    /* INFO BOX */
+    .info-box {
+      background: rgba(42,127,111,0.08); border-left: 3px solid var(--teal);
+      border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+      padding: 14px 16px; font-size: 13px; color: var(--text);
+      line-height: 1.6; margin-bottom: 16px;
+    }
+    .warn-box {
+      background: rgba(232,93,58,0.08); border-left: 3px solid var(--coral);
+      border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+      padding: 14px 16px; font-size: 13px; color: var(--text);
+      line-height: 1.6; margin-bottom: 16px;
+    }
+
+    /* COUNTRY TIPPING TABLE */
+    .tip-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+    .tip-table th { text-align: left; padding: 8px 12px; font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: .06em; color: var(--text-muted); border-bottom: 2px solid var(--sand); }
+    .tip-table td { padding: 10px 12px; border-bottom: 1px solid var(--sand); vertical-align: middle; }
+    .tip-table tr:last-child td { border-bottom: none; }
+    .tip-table tr:hover td { background: var(--sand); }
+    .tip-norm { font-size: 11px; font-weight: 600; padding: 2px 8px; border-radius: 99px; }
+    .tip-high { background: #E8F5E9; color: #2E7D32; }
+    .tip-mid { background: #FFF8E1; color: #F57F17; }
+    .tip-low { background: #FFEBEE; color: #C62828; }
+    .tip-none { background: var(--sand); color: var(--text-muted); }
+
+    /* FOOTER */
+    footer {
+      background: var(--night); color: rgba(255,255,255,0.5);
+      padding: 40px 24px; text-align: center; font-size: 13px;
+    }
+    footer strong { color: rgba(255,255,255,0.8); }
+    .footer-links { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; margin-top: 12px; }
+    .footer-links a { color: rgba(255,255,255,0.4); text-decoration: none; font-size: 12px; }
+    .footer-links a:hover { color: var(--coral); }
+
+    /* RANGE SLIDER */
+    input[type=range] {
+      -webkit-appearance: none; background: transparent; padding: 0; border: none;
+      width: 100%; height: 6px; margin: 8px 0;
+    }
+    input[type=range]::-webkit-slider-runnable-track { height: 6px; border-radius: 3px; background: var(--sand-dark); border: none; }
+    input[type=range]::-webkit-slider-thumb { -webkit-appearance: none; height: 20px; width: 20px; border-radius: 50%; background: var(--coral); margin-top: -7px; cursor: pointer; box-shadow: 0 2px 8px rgba(232,93,58,0.4); }
+    .range-labels { display: flex; justify-content: space-between; font-size: 11px; color: var(--text-muted); margin-top: 2px; }
+
+    /* BUDGET CATEGORY */
+    .budget-cat { display: flex; align-items: center; gap: 12px; padding: 12px 0; border-bottom: 1px solid var(--sand); }
+    .budget-cat:last-child { border-bottom: none; }
+    .budget-cat-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
+    .budget-cat-name { flex: 1; font-size: 14px; }
+    .budget-cat-val { font-size: 14px; font-weight: 600; }
+    .budget-bar-wrap { height: 4px; background: var(--sand-dark); border-radius: 2px; margin-top: 4px; overflow: hidden; }
+    .budget-bar { height: 100%; border-radius: 2px; transition: width .6s ease; }
+
+    @media(max-width: 600px) {
+      nav { padding: 0 12px; }
+      .nav-tools { display: none; }
+      .hero { padding: 48px 16px 56px; }
+      .hero-cards { gap: 8px; }
+      .hero-card { min-width: 130px; padding: 14px 16px; }
+      .tool-wrap { padding: 28px 16px 60px; }
+      .card { padding: 20px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo" onclick="showPage('home')">✈ Travel<span>Kit</span></div>
+  <div class="nav-tools">
+    <button class="nav-btn" onclick="showPage('jetlag')">Jet Lag</button>
+    <button class="nav-btn" onclick="showPage('baggage')">Baggage</button>
+    <button class="nav-btn" onclick="showPage('tip')">Tip</button>
+    <button class="nav-btn" onclick="showPage('packing')">Packing</button>
+    <button class="nav-btn" onclick="showPage('budget')">Budget</button>
+  </div>
+</nav>
+
+<!-- ===================== HOME PAGE ===================== -->
+<div id="page-home" class="page active">
+  <div class="hero">
+    <div class="hero-tag">5 Free Travel Tools</div>
+    <h1>Travel <em>Smarter.</em><br>Stress Less.</h1>
+    <p>Essential calculators and planners for every trip — jet lag recovery, baggage fees, tipping etiquette, packing lists, and budget planning.</p>
+    <div class="hero-cards">
+      <div class="hero-card" onclick="showPage('jetlag')">
+        <div class="hero-card-icon">🕐</div>
+        <div class="hero-card-name">Jet Lag Calculator</div>
+        <div class="hero-card-desc">Beat time zone fatigue</div>
+      </div>
+      <div class="hero-card" onclick="showPage('baggage')">
+        <div class="hero-card-icon">🧳</div>
+        <div class="hero-card-name">Baggage Fees</div>
+        <div class="hero-card-desc">Compare airline charges</div>
+      </div>
+      <div class="hero-card" onclick="showPage('tip')">
+        <div class="hero-card-icon">💵</div>
+        <div class="hero-card-name">Tip by Country</div>
+        <div class="hero-card-desc">Know what to tip</div>
+      </div>
+      <div class="hero-card" onclick="showPage('packing')">
+        <div class="hero-card-icon">📋</div>
+        <div class="hero-card-name">Packing List</div>
+        <div class="hero-card-desc">Never forget a thing</div>
+      </div>
+      <div class="hero-card" onclick="showPage('budget')">
+        <div class="hero-card-icon">💰</div>
+        <div class="hero-card-name">Trip Budget</div>
+        <div class="hero-card-desc">Plan your travel spend</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Ad slot -->
+  <div style="max-width:780px;margin:32px auto 0;padding:0 20px">
+    <div class="ad-banner">Advertisement — Google AdSense will display here after approval</div>
+  </div>
+
+  <div style="max-width:780px;margin:0 auto;padding:20px 20px 60px">
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px">
+
+      <div class="card" style="cursor:pointer" onclick="showPage('jetlag')">
+        <div style="font-size:36px;margin-bottom:12px">🕐</div>
+        <div class="card-title">Jet Lag Calculator</div>
+        <p style="font-size:14px;color:var(--text-muted);line-height:1.6;margin-bottom:16px">Enter your departure and arrival time zones to get a personalized jet lag recovery plan with sleep schedule recommendations.</p>
+        <button class="btn btn-outline">Open Tool →</button>
+      </div>
+
+      <div class="card" style="cursor:pointer" onclick="showPage('baggage')">
+        <div style="font-size:36px;margin-bottom:12px">🧳</div>
+        <div class="card-title">Baggage Fee Calculator</div>
+        <p style="font-size:14px;color:var(--text-muted);line-height:1.6;margin-bottom:16px">Calculate checked baggage fees for major airlines. Compare costs and avoid expensive surprises at the airport.</p>
+        <button class="btn btn-outline">Open Tool →</button>
+      </div>
+
+      <div class="card" style="cursor:pointer" onclick="showPage('tip')">
+        <div style="font-size:36px;margin-bottom:12px">💵</div>
+        <div class="card-title">Tip Calculator by Country</div>
+        <p style="font-size:14px;color:var(--text-muted);line-height:1.6;margin-bottom:16px">Tipping customs vary wildly around the world. Calculate exactly how much to tip in any country with local etiquette guidance.</p>
+        <button class="btn btn-outline">Open Tool →</button>
+      </div>
+
+      <div class="card" style="cursor:pointer" onclick="showPage('packing')">
+        <div style="font-size:36px;margin-bottom:12px">📋</div>
+        <div class="card-title">Smart Packing List Generator</div>
+        <p style="font-size:14px;color:var(--text-muted);line-height:1.6;margin-bottom:16px">Generate a customized packing checklist based on your destination, trip duration, and travel style. Never forget essentials again.</p>
+        <button class="btn btn-outline">Open Tool →</button>
+      </div>
+
+      <div class="card" style="cursor:pointer" onclick="showPage('budget')">
+        <div style="font-size:36px;margin-bottom:12px">💰</div>
+        <div class="card-title">Travel Budget Calculator</div>
+        <p style="font-size:14px;color:var(--text-muted);line-height:1.6;margin-bottom:16px">Estimate your total trip cost including flights, accommodation, food, transport and activities. Plan your travel budget with confidence.</p>
+        <button class="btn btn-outline">Open Tool →</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- ===================== JET LAG CALCULATOR ===================== -->
+<div id="page-jetlag" class="page">
+  <div class="tool-wrap">
+    <div class="tool-header">
+      <div class="tool-breadcrumb" onclick="showPage('home')">← Back to all tools</div>
+      <div class="tool-title">🕐 Jet Lag Calculator</div>
+      <div class="tool-subtitle">Get a personalized recovery plan to beat time zone fatigue fast.</div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Your Flight Details</div>
+      <div class="form-grid">
+        <div class="form-row">
+          <label>Departure Time Zone</label>
+          <select id="jl-from">
+            <option value="-12">UTC-12 (Baker Island)</option>
+            <option value="-11">UTC-11 (Samoa)</option>
+            <option value="-10">UTC-10 (Hawaii)</option>
+            <option value="-9">UTC-9 (Alaska)</option>
+            <option value="-8">UTC-8 (Los Angeles, PST)</option>
+            <option value="-7">UTC-7 (Denver, MST)</option>
+            <option value="-6">UTC-6 (Chicago, CST)</option>
+            <option value="-5">UTC-5 (New York, EST)</option>
+            <option value="-4">UTC-4 (Santiago)</option>
+            <option value="-3">UTC-3 (São Paulo)</option>
+            <option value="-2">UTC-2 (South Georgia)</option>
+            <option value="-1">UTC-1 (Cape Verde)</option>
+            <option value="0">UTC+0 (London, Lisbon)</option>
+            <option value="1">UTC+1 (Paris, Berlin, Rome)</option>
+            <option value="2">UTC+2 (Athens, Cairo)</option>
+            <option value="3">UTC+3 (Moscow, Nairobi)</option>
+            <option value="4">UTC+4 (Dubai, Baku)</option>
+            <option value="5">UTC+5 (Karachi)</option>
+            <option value="5.5">UTC+5:30 (Mumbai, Delhi)</option>
+            <option value="6">UTC+6 (Dhaka)</option>
+            <option value="7">UTC+7 (Bangkok, Jakarta)</option>
+            <option value="8" selected>UTC+8 (Beijing, Singapore, Perth)</option>
+            <option value="9">UTC+9 (Tokyo, Seoul)</option>
+            <option value="9.5">UTC+9:30 (Adelaide)</option>
+            <option value="10">UTC+10 (Sydney, Melbourne)</option>
+            <option value="11">UTC+11 (Noumea)</option>
+            <option value="12">UTC+12 (Auckland, Fiji)</option>
+          </select>
+        </div>
+        <div class="form-row">
+          <label>Destination Time Zone</label>
+          <select id="jl-to">
+            <option value="-12">UTC-12 (Baker Island)</option>
+            <option value="-11">UTC-11 (Samoa)</option>
+            <option value="-10">UTC-10 (Hawaii)</option>
+            <option value="-9">UTC-9 (Alaska)</option>
+            <option value="-8">UTC-8 (Los Angeles, PST)</option>
+            <option value="-7">UTC-7 (Denver, MST)</option>
+            <option value="-6">UTC-6 (Chicago, CST)</option>
+            <option value="-5" selected>UTC-5 (New York, EST)</option>
+            <option value="-4">UTC-4 (Santiago)</option>
+            <option value="-3">UTC-3 (São Paulo)</option>
+            <option value="-2">UTC-2 (South Georgia)</option>
+            <option value="-1">UTC-1 (Cape Verde)</option>
+            <option value="0">UTC+0 (London, Lisbon)</option>
+            <option value="1">UTC+1 (Paris, Berlin, Rome)</option>
+            <option value="2">UTC+2 (Athens, Cairo)</option>
+            <option value="3">UTC+3 (Moscow, Nairobi)</option>
+            <option value="4">UTC+4 (Dubai, Baku)</option>
+            <option value="5">UTC+5 (Karachi)</option>
+            <option value="5.5">UTC+5:30 (Mumbai, Delhi)</option>
+            <option value="6">UTC+6 (Dhaka)</option>
+            <option value="7">UTC+7 (Bangkok, Jakarta)</option>
+            <option value="8">UTC+8 (Beijing, Singapore, Perth)</option>
+            <option value="9">UTC+9 (Tokyo, Seoul)</option>
+            <option value="9.5">UTC+9:30 (Adelaide)</option>
+            <option value="10">UTC+10 (Sydney, Melbourne)</option>
+            <option value="11">UTC+11 (Noumea)</option>
+            <option value="12">UTC+12 (Auckland, Fiji)</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-grid">
+        <div class="form-row">
+          <label>Your Current Local Time</label>
+          <input type="time" id="jl-time" value="08:00">
+        </div>
+        <div class="form-row">
+          <label>Travel Direction</label>
+          <select id="jl-dir">
+            <option value="east">Flying East (earlier sunrise)</option>
+            <option value="west">Flying West (later sunset)</option>
+          </select>
+        </div>
+      </div>
+      <button class="btn btn-primary btn-full" onclick="calcJetLag()">Calculate Recovery Plan</button>
+    </div>
+
+    <div id="jl-result" class="result-box">
+      <div class="result-label">Time Zone Difference</div>
+      <div class="result-value" id="jl-diff">—</div>
+      <div class="result-sub" id="jl-severity">—</div>
+      <div class="result-grid">
+        <div class="result-item">
+          <div class="result-label">Recovery Days</div>
+          <div class="result-value" id="jl-days">—</div>
+        </div>
+        <div class="result-item">
+          <div class="result-label">Your Body Clock</div>
+          <div class="result-value" id="jl-body">—</div>
+        </div>
+        <div class="result-item">
+          <div class="result-label">Target Bedtime</div>
+          <div class="result-value" id="jl-bed">—</div>
+        </div>
+      </div>
+    </div>
+
+    <div id="jl-tips" class="card" style="display:none">
+      <div class="card-title">Your Recovery Plan</div>
+      <div id="jl-tips-content"></div>
+    </div>
+
+    <div class="ad-banner">Advertisement</div>
+
+    <div class="card">
+      <div class="card-title">About Jet Lag</div>
+      <p style="font-size:14px;color:var(--text-muted);line-height:1.7">Jet lag occurs when your body's internal clock (circadian rhythm) is out of sync with the local time at your destination. It's caused by rapid travel across multiple time zones. Symptoms include fatigue, insomnia, difficulty concentrating, and digestive issues. Flying east is generally harder than flying west because it's easier for your body to extend the day than to shorten it.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ===================== BAGGAGE FEE CALCULATOR ===================== -->
+<div id="page-baggage" class="page">
+  <div class="tool-wrap">
+    <div class="tool-header">
+      <div class="tool-breadcrumb" onclick="showPage('home')">← Back to all tools</div>
+      <div class="tool-title">🧳 Baggage Fee Calculator</div>
+      <div class="tool-subtitle">Calculate and compare checked baggage fees for major airlines.</div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Bag Details</div>
+      <div class="form-row">
+        <label>Airline</label>
+        <select id="bg-airline" onchange="updateBagInfo()">
+          <option value="united">United Airlines</option>
+          <option value="delta">Delta Air Lines</option>
+          <option value="american">American Airlines</option>
+          <option value="southwest">Southwest Airlines</option>
+          <option value="spirit">Spirit Airlines</option>
+          <option value="jetblue">JetBlue</option>
+          <option value="lufthansa">Lufthansa</option>
+          <option value="emirates">Emirates</option>
+          <option value="singapore">Singapore Airlines</option>
+          <option value="cathay">Cathay Pacific</option>
+        </select>
+      </div>
+      <div class="form-grid">
+        <div class="form-row">
+          <label>Number of Checked Bags</label>
+          <select id="bg-bags">
+            <option value="1">1 bag</option>
+            <option value="2">2 bags</option>
+            <option value="3">3 bags</option>
+          </select>
+        </div>
+        <div class="form-row">
+          <label>Bag Weight</label>
+          <select id="bg-weight">
+            <option value="normal">Normal (≤ 23kg / 50lb)</option>
+            <option value="heavy">Overweight (23–32kg / 50–70lb)</option>
+            <option value="extra">Extra heavy (32–45kg / 70–100lb)</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-row">
+        <label>Fare Class</label>
+        <select id="bg-class">
+          <option value="economy">Economy</option>
+          <option value="premium">Premium Economy</option>
+          <option value="business">Business / First Class</option>
+        </select>
+      </div>
+      <button class="btn btn-primary btn-full" onclick="calcBaggage()">Calculate Fees</button>
+    </div>
+
+    <div id="bg-result" class="result-box">
+      <div class="result-label">Estimated Total Fee</div>
+      <div class="result-value" id="bg-total">—</div>
+      <div class="result-sub" id="bg-airline-name">—</div>
+      <div class="result-grid">
+        <div class="result-item">
+          <div class="result-label">1st Bag</div>
+          <div class="result-value" id="bg-bag1">—</div>
+        </div>
+        <div class="result-item">
+          <div class="result-label">2nd Bag</div>
+          <div class="result-value" id="bg-bag2">—</div>
+        </div>
+        <div class="result-item">
+          <div class="result-label">Overweight Fee</div>
+          <div class="result-value" id="bg-overweight">—</div>
+        </div>
+      </div>
+    </div>
+
+    <div id="bg-info" class="info-box" style="display:none"></div>
+
+    <div class="ad-banner">Advertisement</div>
+
+    <div class="card">
+      <div class="card-title">Tips to Avoid Baggage Fees</div>
+      <ul style="font-size:14px;color:var(--text-muted);line-height:1.9;padding-left:18px">
+        <li>Pack light and use carry-on only when possible (saves $30–$100+ per trip)</li>
+        <li>Consider airline credit cards — many offer 1–2 free checked bags</li>
+        <li>Elite frequent flyer status often includes free checked bags</li>
+        <li>Weigh your bag at home — overweight fees ($75–$200) dwarf standard fees</li>
+        <li>Southwest Airlines still offers 2 free checked bags for all passengers</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- ===================== TIP CALCULATOR ===================== -->
+<div id="page-tip" class="page">
+  <div class="tool-wrap">
+    <div class="tool-header">
+      <div class="tool-breadcrumb" onclick="showPage('home')">← Back to all tools</div>
+      <div class="tool-title">💵 Tip Calculator by Country</div>
+      <div class="tool-subtitle">Know exactly how much to tip anywhere in the world.</div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Calculate Your Tip</div>
+      <div class="form-row">
+        <label>Select Country</label>
+        <select id="tip-country" onchange="updateTipInfo()">
+          <option value="us">🇺🇸 United States</option>
+          <option value="uk">🇬🇧 United Kingdom</option>
+          <option value="jp">🇯🇵 Japan</option>
+          <option value="cn">🇨🇳 China</option>
+          <option value="fr">🇫🇷 France</option>
+          <option value="de">🇩🇪 Germany</option>
+          <option value="au">🇦🇺 Australia</option>
+          <option value="ca">🇨🇦 Canada</option>
+          <option value="mx">🇲🇽 Mexico</option>
+          <option value="th">🇹🇭 Thailand</option>
+          <option value="sg">🇸🇬 Singapore</option>
+          <option value="ae">🇦🇪 UAE (Dubai)</option>
+          <option value="it">🇮🇹 Italy</option>
+          <option value="es">🇪🇸 Spain</option>
+          <option value="br">🇧🇷 Brazil</option>
+          <option value="in">🇮🇳 India</option>
+          <option value="kr">🇰🇷 South Korea</option>
+          <option value="nl">🇳🇱 Netherlands</option>
+          <option value="nz">🇳🇿 New Zealand</option>
+          <option value="za">🇿🇦 South Africa</option>
+        </select>
+      </div>
+      <div class="form-grid">
+        <div class="form-row">
+          <label>Bill Amount</label>
+          <input type="number" id="tip-bill" placeholder="e.g. 85.00" value="85" min="0" step="0.01">
+        </div>
+        <div class="form-row">
+          <label>Currency</label>
+          <select id="tip-currency">
+            <option value="USD">$ USD</option>
+            <option value="EUR">€ EUR</option>
+            <option value="GBP">£ GBP</option>
+            <option value="JPY">¥ JPY</option>
+            <option value="AUD">A$ AUD</option>
+            <option value="CAD">C$ CAD</option>
+            <option value="SGD">S$ SGD</option>
+            <option value="AED">AED</option>
+            <option value="THB">฿ THB</option>
+            <option value="BRL">R$ BRL</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-row">
+        <label>Service Type</label>
+        <div class="pill-group" id="tip-service">
+          <div class="pill active" onclick="selectPill(this,'tip-service')">🍽 Restaurant</div>
+          <div class="pill" onclick="selectPill(this,'tip-service')">🚕 Taxi</div>
+          <div class="pill" onclick="selectPill(this,'tip-service')">🏨 Hotel</div>
+          <div class="pill" onclick="selectPill(this,'tip-service')">💇 Hair/Spa</div>
+          <div class="pill" onclick="selectPill(this,'tip-service')">🍸 Bar</div>
+        </div>
+      </div>
+      <button class="btn btn-primary btn-full" style="margin-top:16px" onclick="calcTip()">Calculate Tip</button>
+    </div>
+
+    <div id="tip-result" class="result-box">
+      <div class="result-label">Recommended Tip</div>
+      <div class="result-value" id="tip-amount">—</div>
+      <div class="result-sub" id="tip-pct">—</div>
+      <div class="result-grid">
+        <div class="result-item">
+          <div class="result-label">Min Tip</div>
+          <div class="result-value" id="tip-min">—</div>
+        </div>
+        <div class="result-item">
+          <div class="result-label">Suggested</div>
+          <div class="result-value" id="tip-mid-val">—</div>
+        </div>
+        <div class="result-item">
+          <div class="result-label">Generous</div>
+          <div class="result-value" id="tip-max">—</div>
+        </div>
+      </div>
+    </div>
+
+    <div id="tip-culture" class="info-box" style="display:none"></div>
+
+    <div class="ad-banner">Advertisement</div>
+
+    <div class="card">
+      <div class="card-title">Global Tipping Quick Reference</div>
+      <table class="tip-table">
+        <thead>
+          <tr><th>Country</th><th>Restaurant</th><th>Taxi</th><th>Tipping Culture</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>🇺🇸 USA</td><td>15–25%</td><td>15–20%</td><td><span class="tip-norm tip-high">Expected</span></td></tr>
+          <tr><td>🇯🇵 Japan</td><td>0%</td><td>0%</td><td><span class="tip-norm tip-none">Offensive</span></td></tr>
+          <tr><td>🇬🇧 UK</td><td>10–15%</td><td>10%</td><td><span class="tip-norm tip-mid">Appreciated</span></td></tr>
+          <tr><td>🇫🇷 France</td><td>5–10%</td><td>5–10%</td><td><span class="tip-norm tip-mid">Optional</span></td></tr>
+          <tr><td>🇩🇪 Germany</td><td>5–10%</td><td>Round up</td><td><span class="tip-norm tip-mid">Round up</span></td></tr>
+          <tr><td>🇨🇳 China</td><td>0–5%</td><td>0%</td><td><span class="tip-norm tip-low">Rare</span></td></tr>
+          <tr><td>🇹🇭 Thailand</td><td>10–15%</td><td>Round up</td><td><span class="tip-norm tip-mid">Welcome</span></td></tr>
+          <tr><td>🇦🇺 Australia</td><td>0–10%</td><td>0–5%</td><td><span class="tip-norm tip-low">Optional</span></td></tr>
+          <tr><td>🇦🇪 UAE</td><td>10–15%</td><td>10%</td><td><span class="tip-norm tip-mid">Expected</span></td></tr>
+          <tr><td>🇰🇷 South Korea</td><td>0%</td><td>0%</td><td><span class="tip-norm tip-none">Unusual</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- ===================== PACKING LIST ===================== -->
+<div id="page-packing" class="page">
+  <div class="tool-wrap">
+    <div class="tool-header">
+      <div class="tool-breadcrumb" onclick="showPage('home')">← Back to all tools</div>
+      <div class="tool-title">📋 Smart Packing List Generator</div>
+      <div class="tool-subtitle">Get a customized packing checklist based on your trip details.</div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Your Trip</div>
+      <div class="form-grid">
+        <div class="form-row">
+          <label>Destination Climate</label>
+          <select id="pk-climate">
+            <option value="tropical">🌴 Tropical / Hot & Humid</option>
+            <option value="warm">☀️ Warm / Mediterranean</option>
+            <option value="mild">🌤 Mild / Temperate</option>
+            <option value="cold">🧥 Cold / Winter</option>
+            <option value="snow">❄️ Snow / Arctic</option>
+            <option value="desert">🏜 Hot & Dry / Desert</option>
+          </select>
+        </div>
+        <div class="form-row">
+          <label>Trip Duration</label>
+          <select id="pk-days">
+            <option value="1-3">1–3 days (Weekend)</option>
+            <option value="4-7">4–7 days (1 week)</option>
+            <option value="8-14">8–14 days (2 weeks)</option>
+            <option value="15+">15+ days (Extended)</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-row">
+        <label>Trip Type (select all that apply)</label>
+        <div class="pill-group" id="pk-type">
+          <div class="pill active" onclick="togglePill(this)">🏖 Beach</div>
+          <div class="pill" onclick="togglePill(this)">🏙 City Break</div>
+          <div class="pill" onclick="togglePill(this)">🥾 Hiking</div>
+          <div class="pill" onclick="togglePill(this)">💼 Business</div>
+          <div class="pill" onclick="togglePill(this)">🎉 Party / Nightlife</div>
+          <div class="pill" onclick="togglePill(this)">🏕 Camping</div>
+        </div>
+      </div>
+      <div class="form-row">
+        <label>Bag Type</label>
+        <div class="pill-group" id="pk-bag">
+          <div class="pill active" onclick="selectPill(this,'pk-bag')">🎒 Carry-on only</div>
+          <div class="pill" onclick="selectPill(this,'pk-bag')">🧳 Checked bag</div>
+          <div class="pill" onclick="selectPill(this,'pk-bag')">🪣 Backpack</div>
+        </div>
+      </div>
+      <button class="btn btn-primary btn-full" style="margin-top:16px" onclick="generatePackingList()">Generate My Packing List</button>
+    </div>
+
+    <div id="pk-result" style="display:none">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;flex-wrap:wrap;gap:8px">
+        <div style="font-size:18px;font-weight:600">Your Packing List</div>
+        <div style="display:flex;gap:8px">
+          <button class="btn btn-outline" onclick="checkAll()">Check All</button>
+          <button class="btn btn-teal" onclick="printList()">Print / Save</button>
+        </div>
+      </div>
+      <div id="pk-progress" style="margin-bottom:20px">
+        <div style="display:flex;justify-content:space-between;font-size:13px;color:var(--text-muted);margin-bottom:6px">
+          <span>Packing progress</span><span id="pk-count">0 / 0 packed</span>
+        </div>
+        <div style="height:6px;background:var(--sand-dark);border-radius:3px;overflow:hidden">
+          <div id="pk-prog-bar" style="height:100%;background:var(--teal);border-radius:3px;width:0%;transition:width .4s ease"></div>
+        </div>
+      </div>
+      <div id="pk-lists"></div>
+    </div>
+
+    <div class="ad-banner">Advertisement</div>
+  </div>
+</div>
+
+<!-- ===================== BUDGET CALCULATOR ===================== -->
+<div id="page-budget" class="page">
+  <div class="tool-wrap">
+    <div class="tool-header">
+      <div class="tool-breadcrumb" onclick="showPage('home')">← Back to all tools</div>
+      <div class="tool-title">💰 Travel Budget Calculator</div>
+      <div class="tool-subtitle">Estimate your total trip cost and plan your spending.</div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Trip Overview</div>
+      <div class="form-grid">
+        <div class="form-row">
+          <label>Destination Type</label>
+          <select id="bd-dest" onchange="updateBudgetPresets()">
+            <option value="budget">🌏 Budget (SE Asia, Eastern Europe)</option>
+            <option value="moderate">🌍 Moderate (Western Europe, Japan)</option>
+            <option value="expensive">🌎 Expensive (USA, Australia, Scandinavia)</option>
+            <option value="luxury">💎 Luxury Destination</option>
+          </select>
+        </div>
+        <div class="form-row">
+          <label>Number of Days</label>
+          <input type="number" id="bd-days" value="7" min="1" max="365" onchange="calcBudget()">
+        </div>
+      </div>
+      <div class="form-row">
+        <label>Number of Travelers</label>
+        <div class="pill-group" id="bd-travelers">
+          <div class="pill active" onclick="selectPill(this,'bd-travelers');calcBudget()">Solo</div>
+          <div class="pill" onclick="selectPill(this,'bd-travelers');calcBudget()">Couple</div>
+          <div class="pill" onclick="selectPill(this,'bd-travelers');calcBudget()">Family (4)</div>
+          <div class="pill" onclick="selectPill(this,'bd-travelers');calcBudget()">Group (6+)</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Daily Budget by Category</div>
+      <div id="bd-sliders"></div>
+      <button class="btn btn-primary btn-full" style="margin-top:8px" onclick="calcBudget()">Calculate Total Budget</button>
+    </div>
+
+    <div id="bd-result" class="result-box">
+      <div class="result-label">Estimated Total Trip Cost</div>
+      <div class="result-value" id="bd-total">—</div>
+      <div class="result-sub" id="bd-per-day">—</div>
+      <div id="bd-breakdown"></div>
+    </div>
+
+    <div class="ad-banner">Advertisement</div>
+
+    <div class="card">
+      <div class="card-title">Average Daily Costs by Destination (USD)</div>
+      <table class="tip-table">
+        <thead><tr><th>Destination</th><th>Budget</th><th>Moderate</th><th>Comfortable</th></tr></thead>
+        <tbody>
+          <tr><td>Thailand</td><td>$30–50</td><td>$60–100</td><td>$120–200</td></tr>
+          <tr><td>Japan</td><td>$60–80</td><td>$120–180</td><td>$200–350</td></tr>
+          <tr><td>France</td><td>$80–100</td><td>$150–200</td><td>$250–400</td></tr>
+          <tr><td>USA (NYC)</td><td>$100–150</td><td>$200–300</td><td>$350–600</td></tr>
+          <tr><td>Australia</td><td>$80–120</td><td>$160–220</td><td>$280–450</td></tr>
+          <tr><td>Vietnam</td><td>$25–40</td><td>$50–80</td><td>$100–180</td></tr>
+          <tr><td>Spain</td><td>$60–80</td><td>$120–170</td><td>$200–320</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <strong>TravelKit</strong> — Free travel tools for smart travelers
+  <div class="footer-links">
+    <a href="#" onclick="showPage('home')">Home</a>
+    <a href="#" onclick="showPage('jetlag')">Jet Lag Calculator</a>
+    <a href="#" onclick="showPage('baggage')">Baggage Fees</a>
+    <a href="#" onclick="showPage('tip')">Tip Calculator</a>
+    <a href="#" onclick="showPage('packing')">Packing List</a>
+    <a href="#" onclick="showPage('budget')">Budget Calculator</a>
+  </div>
+  <div style="margin-top:16px;font-size:11px;opacity:0.5">© 2026 TravelKit. For informational purposes only. Fees and policies subject to change.</div>
+</footer>
+
+<script>
+// ===== PAGE ROUTING =====
+function showPage(id) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('page-' + id).classList.add('active');
+  const btns = document.querySelectorAll('.nav-btn');
+  btns.forEach(b => { if(b.textContent.toLowerCase().includes(id.substring(0,3))) b.classList.add('active'); });
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+// ===== PILL HELPERS =====
+function selectPill(el, groupId) {
+  document.querySelectorAll('#' + groupId + ' .pill').forEach(p => p.classList.remove('active'));
+  el.classList.add('active');
+}
+function togglePill(el) { el.classList.toggle('active'); }
+
+// ===== JET LAG CALCULATOR =====
+function calcJetLag() {
+  const from = parseFloat(document.getElementById('jl-from').value);
+  const to = parseFloat(document.getElementById('jl-to').value);
+  const time = document.getElementById('jl-time').value;
+  const dir = document.getElementById('jl-dir').value;
+  let diff = Math.abs(to - from);
+  if (diff > 12) diff = 24 - diff;
+  const days = Math.ceil(diff * 0.9);
+  const severity = diff <= 3 ? 'Mild jet lag — quick recovery' : diff <= 6 ? 'Moderate jet lag — allow 4–6 days' : 'Severe jet lag — allow 7–10 days';
+  const [h, m] = time.split(':').map(Number);
+  let bodyH = (h - (to - from) + 24) % 24;
+  let bedH = dir === 'east' ? 22 : 23;
+  document.getElementById('jl-diff').textContent = diff.toFixed(1) + ' hrs';
+  document.getElementById('jl-severity').textContent = severity;
+  document.getElementById('jl-days').textContent = days + ' days';
+  document.getElementById('jl-body').textContent = bodyH + ':' + (m < 10 ? '0' : '') + m;
+  document.getElementById('jl-bed').textContent = bedH + ':00';
+  document.getElementById('jl-result').classList.add('show');
+
+  const tips = dir === 'east' ? [
+    '☀️ Get bright light exposure in the morning at your destination',
+    '😴 Go to bed at the local time even if not tired — avoid napping after 3pm',
+    '💊 Consider melatonin (0.5–3mg) 30 min before your new bedtime',
+    '🚶 Light exercise (walking) in the afternoon helps reset your body clock',
+    '🚫 Avoid alcohol and caffeine — they disrupt sleep quality significantly',
+    '💧 Stay well hydrated throughout the flight and after arrival'
+  ] : [
+    '🌙 Stay up as late as possible on your first night at the destination',
+    '☀️ Get sunlight exposure in the late afternoon/evening to delay your clock',
+    '😴 Allow yourself to sleep in a bit longer in the mornings',
+    '💊 Melatonin at destination bedtime can help shift your rhythm',
+    '🍽 Eat meals at local times even if you are not hungry',
+    '💧 Drink plenty of water — cabin air is extremely dry at altitude'
+  ];
+  const tipsHtml = tips.map(t => `<div style="padding:8px 0;border-bottom:1px solid var(--sand);font-size:14px;line-height:1.6">${t}</div>`).join('');
+  document.getElementById('jl-tips-content').innerHTML = tipsHtml;
+  document.getElementById('jl-tips').style.display = 'block';
+}
+
+// ===== BAGGAGE CALCULATOR =====
+const airlines = {
+  united:    { name:'United Airlines',     b1:35, b2:45, heavy:100, business:0, info:'United MileagePlus members and co-branded card holders may receive free bags.' },
+  delta:     { name:'Delta Air Lines',     b1:35, b2:45, heavy:100, business:0, info:'Delta SkyMiles Medallion members receive free checked bags based on status level.' },
+  american:  { name:'American Airlines',   b1:35, b2:45, heavy:100, business:0, info:'AAdvantage credit card holders get the first bag free on domestic flights.' },
+  southwest: { name:'Southwest Airlines',  b1:0,  b2:0,  heavy:75,  business:0, info:'Southwest offers 2 free checked bags for ALL passengers — the best policy in the US.' },
+  spirit:    { name:'Spirit Airlines',     b1:49, b2:60, heavy:100, business:0, info:'Spirit charges for carry-on bags too. Pre-book bags online for lower rates.' },
+  jetblue:   { name:'JetBlue',             b1:35, b2:45, heavy:100, business:0, info:'JetBlue Mosaic members receive free checked bags.' },
+  lufthansa: { name:'Lufthansa',           b1:0,  b2:65, heavy:80,  business:0, info:'All Lufthansa fares include at least 1 checked bag. Business class: 2 bags free.' },
+  emirates:  { name:'Emirates',            b1:0,  b2:0,  heavy:80,  business:0, info:'Emirates economy includes 25–35kg allowance. Business: 40kg.' },
+  singapore: { name:'Singapore Airlines',  b1:0,  b2:0,  heavy:80,  business:0, info:'Singapore Airlines economy includes 25–30kg. Business class: 40kg.' },
+  cathay:    { name:'Cathay Pacific',      b1:0,  b2:0,  heavy:80,  business:0, info:'Cathay Pacific economy: 23kg checked allowance included. Business: 30kg.' }
+};
+function updateBagInfo() {
+  const a = airlines[document.getElementById('bg-airline').value];
+  const info = document.getElementById('bg-info');
+  if(info) { info.textContent = a.info; info.style.display = 'block'; }
+}
+function calcBaggage() {
+  const airline = document.getElementById('bg-airline').value;
+  const bags = parseInt(document.getElementById('bg-bags').value);
+  const weight = document.getElementById('bg-weight').value;
+  const cls = document.getElementById('bg-class').value;
+  const a = airlines[airline];
+  let b1Fee = cls === 'business' ? 0 : a.b1;
+  let b2Fee = cls === 'business' ? 0 : a.b2;
+  let overFee = weight === 'heavy' ? a.heavy : weight === 'extra' ? a.heavy * 2 : 0;
+  let total = 0;
+  let bag1 = b1Fee, bag2 = 0;
+  if(bags >= 2) bag2 = b2Fee;
+  if(bags === 3) total = b1Fee + b2Fee + b2Fee;
+  else if(bags === 2) total = b1Fee + b2Fee;
+  else total = b1Fee;
+  total += overFee * bags;
+  document.getElementById('bg-total').textContent = '$' + total;
+  document.getElementById('bg-airline-name').textContent = a.name + (cls === 'business' ? ' — Business/First Class' : '');
+  document.getElementById('bg-bag1').textContent = '$' + bag1;
+  document.getElementById('bg-bag2').textContent = bags >= 2 ? '$' + bag2 : 'N/A';
+  document.getElementById('bg-overweight').textContent = overFee > 0 ? '$' + overFee : 'None';
+  document.getElementById('bg-result').classList.add('show');
+  const info = document.getElementById('bg-info');
+  if(info) { info.textContent = a.info; info.style.display = 'block'; }
+}
+
+// ===== TIP CALCULATOR =====
+const tipData = {
+  us: { name:'United States', rest:[18,20,25], taxi:[15,18,20], hotel:[2,3,5], hair:[15,18,20], bar:[1,2,3], culture:'Tipping is mandatory in the US. Servers earn below minimum wage and rely on tips. 20% is standard, 25%+ for great service. Not tipping is considered rude.' },
+  uk: { name:'United Kingdom', rest:[10,12.5,15], taxi:[10,10,15], hotel:[1,2,3], hair:[10,12,15], bar:[0,0,0], culture:'Tipping is appreciated but not mandatory. Check your bill — many restaurants add a "service charge" (usually 12.5%). Rounding up a taxi fare is common.' },
+  jp: { name:'Japan', rest:[0,0,0], taxi:[0,0,0], hotel:[0,0,0], hair:[0,0,0], bar:[0,0,0], culture:'⚠️ Do NOT tip in Japan. Tipping is considered rude and can cause offense. Exceptional service is simply the Japanese standard of quality, not something requiring extra payment.' },
+  cn: { name:'China', rest:[0,0,5], taxi:[0,0,0], hotel:[0,0,2], hair:[0,0,5], bar:[0,0,0], culture:'Tipping is not customary in China, though it\'s becoming more accepted in tourist areas and high-end hotels. Leaving a small tip won\'t offend but is not expected.' },
+  fr: { name:'France', rest:[5,8,10], taxi:[5,8,10], hotel:[1,2,3], hair:[5,8,10], bar:[0,0,5], culture:'Service is included in French restaurant bills by law ("service compris"). An extra 5–10% for good service is a nice gesture but not required. Don\'t over-tip — it can seem condescending.' },
+  de: { name:'Germany', rest:[5,8,10], taxi:[0,5,10], hotel:[1,2,3], hair:[5,10,10], bar:[0,0,5], culture:'Germans typically round up the bill to a convenient number ("Trinkgeld"). Say the total you want to pay when handing over cash. 10% is generous for excellent service.' },
+  au: { name:'Australia', rest:[0,5,10], taxi:[0,0,5], hotel:[0,2,3], hair:[0,0,10], bar:[0,0,0], culture:'Tipping is not expected in Australia — minimum wage is high. That said, rounding up for great service is always welcome. Cafes and bars rarely expect tips.' },
+  ca: { name:'Canada', rest:[15,18,20], taxi:[10,15,15], hotel:[2,3,5], hair:[10,15,15], bar:[1,2,2], culture:'Canadian tipping culture mirrors the US. 15–20% at restaurants is standard. Some payment terminals default to suggesting 18–25% — you can always choose a custom amount.' },
+  mx: { name:'Mexico', rest:[10,15,20], taxi:[0,10,15], hotel:[1,2,3], hair:[10,15,15], bar:[0,10,15], culture:'Tipping is customary and appreciated in Mexico. Restaurant staff earn low wages. 10–15% is standard, 20% for great service. Hotel housekeeping: $1–2/day.' },
+  th: { name:'Thailand', rest:[10,10,15], taxi:[0,5,10], hotel:[1,2,3], hair:[10,10,15], bar:[0,10,15], culture:'Service charges of 10% are often added to bills at restaurants. For massage or spa, 50–100 THB is appropriate. Taxi drivers don\'t usually expect tips but rounding up is nice.' },
+  sg: { name:'Singapore', rest:[0,0,5], taxi:[0,0,5], hotel:[0,0,2], hair:[0,0,5], bar:[0,0,0], culture:'Most bills include a 10% service charge and 9% GST. No additional tipping is required or expected. If exceptional service, a cash tip directly to the person is a kind gesture.' },
+  ae: { name:'UAE (Dubai)', rest:[10,12,15], taxi:[0,10,10], hotel:[2,3,5], hair:[10,12,15], bar:[10,12,15], culture:'Service charge is often included in Dubai restaurants, but an extra 10% tip for good service is appreciated. Tips are important income for expat workers in the service industry.' },
+  it: { name:'Italy', rest:[5,8,10], taxi:[0,5,10], hotel:[1,2,2], hair:[5,8,10], bar:[0,0,1], culture:'"Coperto" (cover charge) is normal in Italian restaurants. An extra 5–10% for good service is appreciated. Rounding up the bill is common. Leaving coins at a cafe counter is fine.' },
+  es: { name:'Spain', rest:[5,8,10], taxi:[0,5,10], hotel:[1,2,2], hair:[5,8,10], bar:[0,0,1], culture:'Tipping is not obligatory in Spain but welcomed. 10% at restaurants for good service. Leave coins at a bar. Spanish service workers are paid a living wage.' },
+  br: { name:'Brazil', rest:[10,10,15], taxi:[5,10,15], hotel:[2,3,5], hair:[10,10,15], bar:[5,10,15], culture:'10% service charge is legally included in Brazilian restaurant bills. This goes to the restaurant, not necessarily the waiter — an additional tip for staff is appreciated.' },
+  in: { name:'India', rest:[10,10,15], taxi:[0,5,10], hotel:[2,3,5], hair:[5,10,10], bar:[0,5,10], culture:'Tipping is appreciated and increasingly expected at tourist-facing restaurants. 10% is generous. At budget dhabas, rounding up is sufficient. Hotel staff rely on tips heavily.' },
+  kr: { name:'South Korea', rest:[0,0,0], taxi:[0,0,0], hotel:[0,0,0], hair:[0,0,0], bar:[0,0,0], culture:'Tipping is not customary in South Korea and can even cause confusion. High service standards are a source of cultural pride. Simply saying "thank you" sincerely is the best tip.' },
+  nl: { name:'Netherlands', rest:[5,8,10], taxi:[0,5,10], hotel:[1,2,3], hair:[5,8,10], bar:[0,0,5], culture:'Tipping in the Netherlands is appreciated but modest. Round up to the nearest convenient amount. 5–10% at restaurants for good service. Minimum wage is high here.' },
+  nz: { name:'New Zealand', rest:[0,5,10], taxi:[0,0,5], hotel:[0,2,3], hair:[0,0,10], bar:[0,0,0], culture:'Like Australia, tipping is not expected in New Zealand. Workers receive a living wage. A tip for outstanding service is always warmly welcomed but never required.' },
+  za: { name:'South Africa', rest:[10,12,15], taxi:[0,10,15], hotel:[2,3,5], hair:[10,12,15], bar:[5,10,15], culture:'Tipping is important in South Africa where unemployment is high and wages are low. 10–15% at restaurants is standard. Airport and parking lot attendants expect R5–20.' }
+};
+function updateTipInfo() {
+  const country = document.getElementById('tip-country').value;
+  const d = tipData[country];
+  if(d) {
+    const culture = document.getElementById('tip-culture');
+    culture.textContent = d.culture;
+    culture.style.display = 'block';
+  }
+}
+function calcTip() {
+  const country = document.getElementById('tip-country').value;
+  const bill = parseFloat(document.getElementById('tip-bill').value) || 0;
+  const currency = document.getElementById('tip-currency').value;
+  const serviceEl = document.querySelector('#tip-service .pill.active');
+  const service = serviceEl ? serviceEl.textContent.trim().split(' ')[1].toLowerCase() : 'restaurant';
+  const d = tipData[country];
+  const sym = { USD:'$', EUR:'€', GBP:'£', JPY:'¥', AUD:'A$', CAD:'C$', SGD:'S$', AED:'AED ', THB:'฿', BRL:'R$' };
+  const s = sym[currency] || '$';
+  let rates;
+  if(service.includes('taxi')) rates = d.taxi;
+  else if(service.includes('hotel')) rates = d.hotel;
+  else if(service.includes('hair') || service.includes('spa')) rates = d.hair;
+  else if(service.includes('bar')) rates = d.bar;
+  else rates = d.rest;
+  const minTip = (bill * rates[0] / 100).toFixed(2);
+  const midTip = (bill * rates[1] / 100).toFixed(2);
+  const maxTip = (bill * rates[2] / 100).toFixed(2);
+  document.getElementById('tip-amount').textContent = s + midTip;
+  document.getElementById('tip-pct').textContent = rates[1] + '% suggested in ' + d.name;
+  document.getElementById('tip-min').textContent = s + minTip;
+  document.getElementById('tip-mid-val').textContent = s + midTip;
+  document.getElementById('tip-max').textContent = s + maxTip;
+  document.getElementById('tip-result').classList.add('show');
+  const culture = document.getElementById('tip-culture');
+  culture.textContent = d.culture;
+  culture.style.display = 'block';
+}
+
+// ===== PACKING LIST GENERATOR =====
+const packingItems = {
+  essentials: ['Passport / ID', 'Visa documents', 'Travel insurance card', 'Flight tickets / boarding passes', 'Hotel confirmations', 'Emergency cash', 'Credit / debit cards', 'Phone charger', 'Power adapter', 'Headphones'],
+  clothes_beach: ['Swimsuit (x2)', 'Beach cover-up', 'Flip flops / sandals', 'Sun hat', 'Light shorts (x3)', 'T-shirts (x4)', 'Light dress / casual shirt', 'Evening outfit'],
+  clothes_city: ['Smart casual outfits (x3)', 'Comfortable walking shoes', 'Jeans or chinos', 'Light jacket or blazer', 'Dress shoes / smart flats'],
+  clothes_hiking: ['Moisture-wicking shirts (x3)', 'Hiking pants / shorts', 'Hiking boots (broken in!)', 'Wool/synthetic socks (x4)', 'Base layers', 'Rain jacket / windbreaker', 'Hiking poles'],
+  clothes_business: ['Business suits / formal outfits', 'Dress shirts (x3)', 'Ties / accessories', 'Dress shoes', 'Wrinkle-resistant bags for clothes'],
+  clothes_cold: ['Thermal base layers (x2)', 'Heavy sweaters / fleece (x2)', 'Waterproof winter jacket', 'Warm hat & gloves', 'Thermal socks (x4)', 'Snow boots', 'Scarf'],
+  clothes_mild: ['Light layers', 'Long-sleeve shirts (x3)', 'Light jacket', 'Comfortable sneakers', 'Jeans (x2)', 'Mix of casual outfits'],
+  clothes_tropical: ['Lightweight breathable shirts', 'Shorts / light dresses', 'Sandals', 'Rain poncho (tropical showers!)', 'Quick-dry clothes'],
+  health: ['Prescription medications (extra supply)', 'First aid kit', 'Painkillers (ibuprofen / paracetamol)', 'Antihistamines', 'Diarrhea medication', 'Band-aids', 'Hand sanitizer', 'Face masks', 'Sunscreen SPF 50+', 'Insect repellent'],
+  toiletries: ['Toothbrush & toothpaste', 'Deodorant', 'Shampoo & conditioner', 'Body wash', 'Razor & shaving cream', 'Moisturizer', 'Lip balm', 'Feminine hygiene products', 'Nail clippers', 'Hair brush / comb'],
+  tech: ['Camera & memory cards', 'Portable charger / power bank', 'Universal power adapter', 'Laptop / tablet', 'E-reader / Kindle', 'Neck pillow (long flights)', 'Eye mask & earplugs'],
+  camping: ['Tent', 'Sleeping bag', 'Sleeping mat', 'Headlamp + batteries', 'Multi-tool / pocket knife', 'Camp stove & fuel', 'Cookware set', 'Water filter / purification tablets', 'Map & compass', 'Fire starter'],
+};
+function generatePackingList() {
+  const climate = document.getElementById('pk-climate').value;
+  const days = document.getElementById('pk-days').value;
+  const bagType = document.querySelector('#pk-bag .pill.active').textContent.trim();
+  const types = Array.from(document.querySelectorAll('#pk-type .pill.active')).map(p => p.textContent.trim());
+  let sections = { '📄 Documents & Essentials': [...packingItems.essentials], '💊 Health & Safety': [...packingItems.health], '🧴 Toiletries': [...packingItems.toiletries] };
+  let clothes = [];
+  if(climate === 'tropical') clothes = [...packingItems.clothes_tropical];
+  else if(climate === 'warm') clothes = [...packingItems.clothes_mild];
+  else if(climate === 'cold' || climate === 'snow') clothes = [...packingItems.clothes_cold];
+  else if(climate === 'desert') clothes = [...packingItems.clothes_tropical];
+  else clothes = [...packingItems.clothes_mild];
+  types.forEach(t => {
+    if(t.includes('Beach')) clothes.push(...packingItems.clothes_beach.filter(i => !clothes.includes(i)));
+    if(t.includes('City')) clothes.push(...packingItems.clothes_city.filter(i => !clothes.includes(i)));
+    if(t.includes('Hiking')) clothes.push(...packingItems.clothes_hiking.filter(i => !clothes.includes(i)));
+    if(t.includes('Business')) clothes.push(...packingItems.clothes_business.filter(i => !clothes.includes(i)));
+    if(t.includes('Camping')) sections['🏕 Camping Gear'] = [...packingItems.camping];
+  });
+  sections['👔 Clothing'] = [...new Set(clothes)];
+  if(days !== '1-3') sections['📱 Tech & Gadgets'] = [...packingItems.tech];
+  if(bagType.includes('Carry-on')) {
+    sections['✈️ Carry-on Tips'] = ['Check airline carry-on size limits before packing', 'Liquids: 100ml each in a clear bag', 'Pack valuables & medications in carry-on', 'Laptop / electronics must be accessible for security'];
+  }
+  let html = '';
+  let totalItems = 0;
+  Object.entries(sections).forEach(([title, items]) => {
+    totalItems += items.length;
+    html += `<div class="card" style="margin-bottom:16px"><div class="card-title">${title}</div><ul class="checklist">`;
+    items.forEach(item => {
+      html += `<li onclick="toggleCheck(this)"><div class="check-circle"></div><span>${item}</span></li>`;
+    });
+    html += `</ul></div>`;
+  });
+  document.getElementById('pk-lists').innerHTML = html;
+  document.getElementById('pk-count').textContent = '0 / ' + totalItems + ' packed';
+  document.getElementById('pk-result').style.display = 'block';
+  document.getElementById('pk-result').scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+function toggleCheck(el) {
+  el.classList.toggle('done');
+  updatePackingProgress();
+}
+function updatePackingProgress() {
+  const all = document.querySelectorAll('#pk-lists .checklist li').length;
+  const done = document.querySelectorAll('#pk-lists .checklist li.done').length;
+  document.getElementById('pk-count').textContent = done + ' / ' + all + ' packed';
+  document.getElementById('pk-prog-bar').style.width = (all > 0 ? (done/all*100) : 0) + '%';
+}
+function checkAll() {
+  document.querySelectorAll('#pk-lists .checklist li').forEach(li => li.classList.add('done'));
+  updatePackingProgress();
+}
+function printList() { window.print(); }
+
+// ===== BUDGET CALCULATOR =====
+const budgetPresets = {
+  budget:   { accommodation: 25, food: 20, transport: 10, activities: 15, misc: 10 },
+  moderate: { accommodation: 80, food: 50, transport: 25, activities: 35, misc: 20 },
+  expensive:{ accommodation: 150, food: 80, transport: 40, activities: 60, misc: 30 },
+  luxury:   { accommodation: 300, food: 150, transport: 80, activities: 120, misc: 60 }
+};
+const budgetColors = { accommodation: '#E85D3A', food: '#D4920A', transport: '#2A7F6F', activities: '#7B5EA7', misc: '#6B6B6B' };
+const budgetIcons = { accommodation: '🏨', food: '🍽', transport: '🚗', activities: '🎭', misc: '🛍' };
+
+function updateBudgetPresets() {
+  const dest = document.getElementById('bd-dest').value;
+  const presets = budgetPresets[dest];
+  Object.keys(presets).forEach(cat => {
+    const slider = document.getElementById('bd-' + cat);
+    if(slider) { slider.value = presets[cat]; document.getElementById('bd-' + cat + '-val').textContent = '$' + presets[cat]; }
+  });
+  calcBudget();
+}
+function initBudgetSliders() {
+  const cats = ['accommodation', 'food', 'transport', 'activities', 'misc'];
+  const labels = { accommodation: 'Accommodation (per night)', food: 'Food & Drinks (per day)', transport: 'Local Transport (per day)', activities: 'Activities & Sightseeing (per day)', misc: 'Shopping & Miscellaneous (per day)' };
+  const presets = budgetPresets.budget;
+  let html = '';
+  cats.forEach(cat => {
+    html += `<div style="margin-bottom:18px">
+      <div style="display:flex;justify-content:space-between;margin-bottom:4px">
+        <label style="margin:0">${budgetIcons[cat]} ${labels[cat]}</label>
+        <strong style="font-size:14px" id="bd-${cat}-val">$${presets[cat]}</strong>
+      </div>
+      <input type="range" id="bd-${cat}" min="0" max="${cat==='accommodation'?500:250}" step="5" value="${presets[cat]}"
+        oninput="document.getElementById('bd-${cat}-val').textContent='$'+this.value;calcBudget()">
+      <div class="range-labels"><span>$0</span><span>$${cat==='accommodation'?500:250}</span></div>
+    </div>`;
+  });
+  document.getElementById('bd-sliders').innerHTML = html;
+}
+function calcBudget() {
+  const cats = ['accommodation', 'food', 'transport', 'activities', 'misc'];
+  const days = parseInt(document.getElementById('bd-days').value) || 7;
+  const travelerEl = document.querySelector('#bd-travelers .pill.active');
+  const travelers = travelerEl ? (travelerEl.textContent.includes('Solo') ? 1 : travelerEl.textContent.includes('Couple') ? 2 : travelerEl.textContent.includes('Family') ? 4 : 6) : 1;
+  let total = 0;
+  let breakdown = '';
+  let values = {};
+  cats.forEach(cat => {
+    const v = parseInt(document.getElementById('bd-' + cat)?.value || 0);
+    values[cat] = v;
+    const catTotal = (cat === 'accommodation' ? v * days : v * days) * travelers;
+    total += catTotal;
+  });
+  const perDay = Math.round(total / days);
+  document.getElementById('bd-total').textContent = '$' + total.toLocaleString();
+  document.getElementById('bd-per-day').textContent = '$' + perDay + '/day · ' + travelers + ' traveler' + (travelers > 1 ? 's' : '') + ' · ' + days + ' days';
+
+  breakdown = '<div style="margin-top:20px">';
+  cats.forEach(cat => {
+    const v = values[cat] * days * travelers;
+    const pct = total > 0 ? Math.round(v / total * 100) : 0;
+    breakdown += `<div class="budget-cat">
+      <div class="budget-cat-dot" style="background:${budgetColors[cat]}"></div>
+      <div class="budget-cat-name">${budgetIcons[cat]} ${cat.charAt(0).toUpperCase()+cat.slice(1)}</div>
+      <div class="budget-cat-val">$${v.toLocaleString()} <span style="font-size:11px;opacity:0.6">${pct}%</span></div>
+    </div>
+    <div class="budget-bar-wrap" style="margin-left:22px;margin-bottom:8px">
+      <div class="budget-bar" style="width:${pct}%;background:${budgetColors[cat]}"></div>
+    </div>`;
+  });
+  breakdown += '</div>';
+  document.getElementById('bd-breakdown').innerHTML = breakdown;
+  document.getElementById('bd-result').classList.add('show');
+}
+
+// ===== INIT =====
+window.onload = () => {
+  initBudgetSliders();
+  updateBagInfo();
+  updateTipInfo();
+};
+</script>
+</body>
+</html>
