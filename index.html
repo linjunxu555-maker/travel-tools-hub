@@ -3,13 +3,46 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>TravelKit — Free Travel Tools for Smart Travelers</title>
-  <meta name="description" content="Free travel tools: Jet Lag Calculator, Baggage Fee Calculator, Tip Calculator by Country, Packing List Generator, and Travel Budget Calculator. Plan smarter trips.">
-  <meta name="keywords" content="jet lag calculator, baggage fee calculator, tip calculator by country, packing list generator, travel budget calculator">
-  <meta property="og:title" content="TravelKit — Free Travel Tools">
-  <meta property="og:description" content="5 essential travel tools to help you plan smarter trips. Free, fast, no signup needed.">
+  <title>TravelKit - Free Travel Calculators: Jet Lag, Baggage, Tips, Packing & Budget</title>
+  <meta name="description" content="Free travel calculators and planners for smarter trips: jet lag recovery, airline baggage fees, country tipping etiquette, packing checklist, and travel budget calculator.">
+  <meta name="keywords" content="travel calculator, free travel tools, jet lag calculator, baggage fee calculator, tip calculator by country, tipping etiquette, packing list generator, travel budget calculator, Southeast Asia travel tips, Europe travel tips, island travel tips">
+  <meta name="robots" content="index, follow, max-image-preview:large">
+  <meta name="author" content="TravelKit">
+  <meta name="theme-color" content="#E85D3A">
+  <meta property="og:title" content="TravelKit - Free Travel Calculators & Planners">
+  <meta property="og:description" content="Plan smarter trips with free tools for jet lag, baggage fees, country tipping etiquette, packing lists, and travel budgets.">
   <meta property="og:type" content="website">
+  <meta property="og:url" content="https://yourdomain.com/">
+  <meta property="og:site_name" content="TravelKit">
+  <meta property="og:locale" content="en_US">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="TravelKit - Free Travel Calculators">
+  <meta name="twitter:description" content="Free travel tools for jet lag, baggage fees, tipping etiquette, packing lists, and travel budgets.">
   <link rel="canonical" href="https://yourdomain.com/">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "TravelKit",
+    "url": "https://yourdomain.com/",
+    "applicationCategory": "TravelApplication",
+    "operatingSystem": "Any",
+    "description": "Free travel calculators for jet lag recovery, baggage fees, tipping etiquette by country, packing lists, and travel budgets.",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    },
+    "featureList": [
+      "Jet lag calculator",
+      "Baggage fee calculator",
+      "Tip calculator by country",
+      "Packing list generator",
+      "Travel budget calculator"
+    ]
+  }
+  </script>
 
   <!-- Google AdSense placeholder — replace with your code -->
   <!-- <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX" crossorigin="anonymous"></script> -->
@@ -378,35 +411,35 @@
         <div style="font-size:36px;margin-bottom:12px">🕐</div>
         <div class="card-title">Jet Lag Calculator</div>
         <p style="font-size:14px;color:var(--text-muted);line-height:1.6;margin-bottom:16px">Enter your departure and arrival time zones to get a personalized jet lag recovery plan with sleep schedule recommendations.</p>
-        <button class="btn btn-outline">Open Tool →</button>
+        <button type="button" class="btn btn-outline" onclick="event.stopPropagation();showPage('jetlag')">Open Tool →</button>
       </div>
 
       <div class="card" style="cursor:pointer" onclick="showPage('baggage')">
         <div style="font-size:36px;margin-bottom:12px">🧳</div>
         <div class="card-title">Baggage Fee Calculator</div>
         <p style="font-size:14px;color:var(--text-muted);line-height:1.6;margin-bottom:16px">Calculate checked baggage fees for major airlines. Compare costs and avoid expensive surprises at the airport.</p>
-        <button class="btn btn-outline">Open Tool →</button>
+        <button type="button" class="btn btn-outline" onclick="event.stopPropagation();showPage('baggage')">Open Tool →</button>
       </div>
 
       <div class="card" style="cursor:pointer" onclick="showPage('tip')">
         <div style="font-size:36px;margin-bottom:12px">💵</div>
         <div class="card-title">Tip Calculator by Country</div>
         <p style="font-size:14px;color:var(--text-muted);line-height:1.6;margin-bottom:16px">Tipping customs vary wildly around the world. Calculate exactly how much to tip in any country with local etiquette guidance.</p>
-        <button class="btn btn-outline">Open Tool →</button>
+        <button type="button" class="btn btn-outline" onclick="event.stopPropagation();showPage('tip')">Open Tool →</button>
       </div>
 
       <div class="card" style="cursor:pointer" onclick="showPage('packing')">
         <div style="font-size:36px;margin-bottom:12px">📋</div>
         <div class="card-title">Smart Packing List Generator</div>
         <p style="font-size:14px;color:var(--text-muted);line-height:1.6;margin-bottom:16px">Generate a customized packing checklist based on your destination, trip duration, and travel style. Never forget essentials again.</p>
-        <button class="btn btn-outline">Open Tool →</button>
+        <button type="button" class="btn btn-outline" onclick="event.stopPropagation();showPage('packing')">Open Tool →</button>
       </div>
 
       <div class="card" style="cursor:pointer" onclick="showPage('budget')">
         <div style="font-size:36px;margin-bottom:12px">💰</div>
         <div class="card-title">Travel Budget Calculator</div>
         <p style="font-size:14px;color:var(--text-muted);line-height:1.6;margin-bottom:16px">Estimate your total trip cost including flights, accommodation, food, transport and activities. Plan your travel budget with confidence.</p>
-        <button class="btn btn-outline">Open Tool →</button>
+        <button type="button" class="btn btn-outline" onclick="event.stopPropagation();showPage('budget')">Open Tool →</button>
       </div>
 
     </div>
@@ -666,6 +699,53 @@
           <option value="nl">🇳🇱 Netherlands</option>
           <option value="nz">🇳🇿 New Zealand</option>
           <option value="za">🇿🇦 South Africa</option>
+          <option value="vn">Vietnam</option>
+          <option value="my">Malaysia</option>
+          <option value="id">Indonesia</option>
+          <option value="ph">Philippines</option>
+          <option value="kh">Cambodia</option>
+          <option value="la">Laos</option>
+          <option value="mm">Myanmar</option>
+          <option value="bn">Brunei</option>
+          <option value="mv">Maldives</option>
+          <option value="lk">Sri Lanka</option>
+          <option value="np">Nepal</option>
+          <option value="pt">Portugal</option>
+          <option value="gr">Greece</option>
+          <option value="ch">Switzerland</option>
+          <option value="at">Austria</option>
+          <option value="be">Belgium</option>
+          <option value="ie">Ireland</option>
+          <option value="se">Sweden</option>
+          <option value="no">Norway</option>
+          <option value="dk">Denmark</option>
+          <option value="fi">Finland</option>
+          <option value="pl">Poland</option>
+          <option value="cz">Czech Republic</option>
+          <option value="hu">Hungary</option>
+          <option value="hr">Croatia</option>
+          <option value="si">Slovenia</option>
+          <option value="mt">Malta</option>
+          <option value="cy">Cyprus</option>
+          <option value="is">Iceland</option>
+          <option value="lu">Luxembourg</option>
+          <option value="mc">Monaco</option>
+          <option value="ad">Andorra</option>
+          <option value="sm">San Marino</option>
+          <option value="me">Montenegro</option>
+          <option value="al">Albania</option>
+          <option value="tr">Turkey</option>
+          <option value="ma">Morocco</option>
+          <option value="eg">Egypt</option>
+          <option value="il">Israel</option>
+          <option value="fj">Fiji</option>
+          <option value="mu">Mauritius</option>
+          <option value="sc">Seychelles</option>
+          <option value="bs">Bahamas</option>
+          <option value="bb">Barbados</option>
+          <option value="jm">Jamaica</option>
+          <option value="do">Dominican Republic</option>
+          <option value="cu">Cuba</option>
         </select>
       </div>
       <div class="form-grid">
@@ -686,6 +766,41 @@
             <option value="AED">AED</option>
             <option value="THB">฿ THB</option>
             <option value="BRL">R$ BRL</option>
+            <option value="CNY">¥ CNY</option>
+            <option value="HKD">HK$ HKD</option>
+            <option value="TWD">NT$ TWD</option>
+            <option value="KRW">₩ KRW</option>
+            <option value="INR">₹ INR</option>
+            <option value="IDR">Rp IDR</option>
+            <option value="MYR">RM MYR</option>
+            <option value="PHP">₱ PHP</option>
+            <option value="VND">₫ VND</option>
+            <option value="KHR">៛ KHR</option>
+            <option value="LAK">₭ LAK</option>
+            <option value="MMK">K MMK</option>
+            <option value="BND">B$ BND</option>
+            <option value="CHF">CHF</option>
+            <option value="SEK">kr SEK</option>
+            <option value="NOK">kr NOK</option>
+            <option value="DKK">kr DKK</option>
+            <option value="PLN">zł PLN</option>
+            <option value="CZK">Kč CZK</option>
+            <option value="HUF">Ft HUF</option>
+            <option value="TRY">₺ TRY</option>
+            <option value="ZAR">R ZAR</option>
+            <option value="MXN">$ MXN</option>
+            <option value="NZD">NZ$ NZD</option>
+            <option value="MAD">MAD</option>
+            <option value="EGP">E£ EGP</option>
+            <option value="ILS">₪ ILS</option>
+            <option value="ISK">kr ISK</option>
+            <option value="FJD">FJ$ FJD</option>
+            <option value="MUR">Rs MUR</option>
+            <option value="SCR">SR SCR</option>
+            <option value="LKR">Rs LKR</option>
+            <option value="NPR">Rs NPR</option>
+            <option value="MVR">Rf MVR</option>
+            <option value="XCD">EC$ XCD</option>
           </select>
         </div>
       </div>
@@ -743,6 +858,18 @@
           <tr><td>🇦🇺 Australia</td><td>0–10%</td><td>0–5%</td><td><span class="tip-norm tip-low">Optional</span></td></tr>
           <tr><td>🇦🇪 UAE</td><td>10–15%</td><td>10%</td><td><span class="tip-norm tip-mid">Expected</span></td></tr>
           <tr><td>🇰🇷 South Korea</td><td>0%</td><td>0%</td><td><span class="tip-norm tip-none">Unusual</span></td></tr>
+          <tr><td>Vietnam</td><td>0-10%</td><td>Round up</td><td><span class="tip-norm tip-mid">Welcome</span></td></tr>
+          <tr><td>Malaysia</td><td>0-10%</td><td>Round up</td><td><span class="tip-norm tip-low">Optional</span></td></tr>
+          <tr><td>Indonesia / Bali</td><td>5-10%</td><td>Round up</td><td><span class="tip-norm tip-mid">Appreciated</span></td></tr>
+          <tr><td>Philippines</td><td>10-15%</td><td>5-10%</td><td><span class="tip-norm tip-mid">Appreciated</span></td></tr>
+          <tr><td>Maldives</td><td>10-15%</td><td>N/A</td><td><span class="tip-norm tip-mid">Resort standard</span></td></tr>
+          <tr><td>Portugal</td><td>5-10%</td><td>Round up</td><td><span class="tip-norm tip-mid">Optional</span></td></tr>
+          <tr><td>Greece</td><td>5-10%</td><td>5-10%</td><td><span class="tip-norm tip-mid">Appreciated</span></td></tr>
+          <tr><td>Croatia</td><td>5-10%</td><td>Round up</td><td><span class="tip-norm tip-mid">Appreciated</span></td></tr>
+          <tr><td>Malta</td><td>5-10%</td><td>5-10%</td><td><span class="tip-norm tip-mid">Optional</span></td></tr>
+          <tr><td>Iceland</td><td>0-5%</td><td>0-5%</td><td><span class="tip-norm tip-none">Not expected</span></td></tr>
+          <tr><td>Bahamas</td><td>15-20%</td><td>10-15%</td><td><span class="tip-norm tip-high">Expected</span></td></tr>
+          <tr><td>Jamaica</td><td>10-15%</td><td>10-15%</td><td><span class="tip-norm tip-high">Expected</span></td></tr>
         </tbody>
       </table>
     </div>
@@ -913,12 +1040,62 @@
 
 <script>
 // ===== PAGE ROUTING =====
+const pageMeta = {
+  home: {
+    title: 'TravelKit - Free Travel Calculators: Jet Lag, Baggage, Tips, Packing & Budget',
+    description: 'Free travel calculators and planners for smarter trips: jet lag recovery, airline baggage fees, country tipping etiquette, packing checklist, and travel budget calculator.'
+  },
+  jetlag: {
+    title: 'Jet Lag Calculator - Personalized Recovery Plan | TravelKit',
+    description: 'Calculate time zone difference and get a simple jet lag recovery plan with sleep, sunlight, hydration, and arrival-day tips.'
+  },
+  baggage: {
+    title: 'Baggage Fee Calculator - Compare Airline Bag Costs | TravelKit',
+    description: 'Estimate checked baggage and overweight fees for major airlines before you arrive at the airport.'
+  },
+  tip: {
+    title: 'Tip Calculator by Country - Global Tipping Guide | TravelKit',
+    description: 'Calculate restaurant, taxi, hotel, spa, and bar tips by country, including Southeast Asia, Europe, islands, and top tourist destinations.'
+  },
+  packing: {
+    title: 'Packing List Generator - Smart Travel Checklist | TravelKit',
+    description: 'Generate a custom packing checklist based on destination climate, trip length, luggage style, and travel type.'
+  },
+  budget: {
+    title: 'Travel Budget Calculator - Estimate Trip Costs | TravelKit',
+    description: 'Estimate your trip budget for accommodation, food, transport, activities, and miscellaneous travel expenses.'
+  }
+};
+
+function setMetaContent(selector, content) {
+  const el = document.querySelector(selector);
+  if(el) el.setAttribute('content', content);
+}
+
+function updatePageMeta(id) {
+  const meta = pageMeta[id] || pageMeta.home;
+  document.title = meta.title;
+  setMetaContent('meta[name="description"]', meta.description);
+  setMetaContent('meta[property="og:title"]', meta.title);
+  setMetaContent('meta[property="og:description"]', meta.description);
+  setMetaContent('meta[name="twitter:title"]', meta.title);
+  setMetaContent('meta[name="twitter:description"]', meta.description);
+}
+
 function showPage(id) {
+  const targetPage = document.getElementById('page-' + id);
+  if(!targetPage) return;
   document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
   document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
-  document.getElementById('page-' + id).classList.add('active');
+  targetPage.classList.add('active');
   const btns = document.querySelectorAll('.nav-btn');
   btns.forEach(b => { if(b.textContent.toLowerCase().includes(id.substring(0,3))) b.classList.add('active'); });
+  updatePageMeta(id);
+  try {
+    if(location.hash !== '#' + id) history.replaceState(null, '', '#' + id);
+  } catch (err) {
+    location.hash = id;
+  }
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
@@ -1034,6 +1211,53 @@ const tipData = {
   kr: { name:'South Korea', rest:[0,0,0], taxi:[0,0,0], hotel:[0,0,0], hair:[0,0,0], bar:[0,0,0], culture:'Tipping is not customary in South Korea and can even cause confusion. High service standards are a source of cultural pride. Simply saying "thank you" sincerely is the best tip.' },
   nl: { name:'Netherlands', rest:[5,8,10], taxi:[0,5,10], hotel:[1,2,3], hair:[5,8,10], bar:[0,0,5], culture:'Tipping in the Netherlands is appreciated but modest. Round up to the nearest convenient amount. 5–10% at restaurants for good service. Minimum wage is high here.' },
   nz: { name:'New Zealand', rest:[0,5,10], taxi:[0,0,5], hotel:[0,2,3], hair:[0,0,10], bar:[0,0,0], culture:'Like Australia, tipping is not expected in New Zealand. Workers receive a living wage. A tip for outstanding service is always warmly welcomed but never required.' },
+  vn: { name:'Vietnam', rest:[0,5,10], taxi:[0,0,5], hotel:[1,2,3], hair:[5,10,10], bar:[0,5,10], culture:'Tipping is not mandatory in Vietnam, but small tips are welcome in tourist areas, spas, hotels, and guided tours. Rounding up taxi fares is common.' },
+  my: { name:'Malaysia', rest:[0,0,10], taxi:[0,0,5], hotel:[0,2,3], hair:[0,5,10], bar:[0,0,5], culture:'Malaysia often includes service charge at restaurants. Extra tipping is optional, mostly used for excellent service, hotel staff, private drivers, and guides.' },
+  id: { name:'Indonesia', rest:[0,5,10], taxi:[0,0,5], hotel:[1,2,3], hair:[5,10,10], bar:[0,5,10], culture:'In Bali and major tourist areas, tipping is appreciated. Many restaurants include tax and service, but a small extra tip for good service is common.' },
+  ph: { name:'Philippines', rest:[10,10,15], taxi:[0,5,10], hotel:[1,2,3], hair:[10,10,15], bar:[0,5,10], culture:'Tipping is appreciated in the Philippines, especially in restaurants, hotels, salons, and tours. Check for service charge before adding more.' },
+  kh: { name:'Cambodia', rest:[5,10,10], taxi:[0,0,5], hotel:[1,2,3], hair:[5,10,10], bar:[0,5,10], culture:'Tipping is welcome in Cambodia, especially around Siem Reap, Phnom Penh, hotels, guides, and drivers. Small US dollar tips are commonly accepted.' },
+  la: { name:'Laos', rest:[0,5,10], taxi:[0,0,5], hotel:[1,2,3], hair:[0,5,10], bar:[0,0,5], culture:'Tipping is not required in Laos, but small tips are appreciated by guides, drivers, hotel staff, and tourist-facing restaurants.' },
+  mm: { name:'Myanmar', rest:[0,5,10], taxi:[0,0,5], hotel:[1,2,3], hair:[0,5,10], bar:[0,0,5], culture:'Tipping is not a strong local custom in Myanmar, but small tips are appreciated in hotels, tours, and tourist restaurants.' },
+  bn: { name:'Brunei', rest:[0,0,5], taxi:[0,0,5], hotel:[0,1,2], hair:[0,5,10], bar:[0,0,0], culture:'Tipping is not expected in Brunei. Service charges may appear in hotels and restaurants; rounding up is enough for exceptional service.' },
+  mv: { name:'Maldives', rest:[10,10,15], taxi:[0,0,0], hotel:[2,3,5], hair:[10,10,15], bar:[10,10,15], culture:'Many Maldives resorts add service charge, but extra tips for room staff, boat crews, dive teams, and butlers are common at the end of a stay.' },
+  lk: { name:'Sri Lanka', rest:[10,10,15], taxi:[0,5,10], hotel:[1,2,3], hair:[5,10,10], bar:[0,5,10], culture:'Tipping is common in Sri Lankan tourism. Restaurants may add service charge; drivers, guides, and hotel staff usually appreciate a separate tip.' },
+  np: { name:'Nepal', rest:[5,10,10], taxi:[0,0,5], hotel:[1,2,3], hair:[0,5,10], bar:[0,0,5], culture:'Tipping is appreciated in Nepal, especially for trekking guides, porters, drivers, and tourist restaurants. Check if service charge is included.' },
+  pt: { name:'Portugal', rest:[5,8,10], taxi:[0,5,10], hotel:[1,2,3], hair:[5,8,10], bar:[0,0,5], culture:'Tipping in Portugal is modest and optional. Round up at cafes and taxis; 5-10% is appreciated at restaurants for good service.' },
+  gr: { name:'Greece', rest:[5,10,10], taxi:[0,5,10], hotel:[1,2,3], hair:[5,10,10], bar:[0,0,5], culture:'Tipping is appreciated in Greece, especially in tourist areas and islands. Round up small bills or leave 5-10% at restaurants.' },
+  ch: { name:'Switzerland', rest:[0,5,10], taxi:[0,5,10], hotel:[1,2,3], hair:[0,5,10], bar:[0,0,5], culture:'Service is included in Switzerland. Tipping is optional; rounding up or leaving a small amount for excellent service is enough.' },
+  at: { name:'Austria', rest:[5,10,10], taxi:[5,10,10], hotel:[1,2,3], hair:[5,10,10], bar:[0,0,5], culture:'Austrians usually round up or add 5-10% at restaurants. Tell the server the total amount you want to pay.' },
+  be: { name:'Belgium', rest:[0,5,10], taxi:[0,5,10], hotel:[1,2,3], hair:[0,5,10], bar:[0,0,5], culture:'Service is usually included in Belgium. Extra tipping is optional and modest; rounding up is common.' },
+  ie: { name:'Ireland', rest:[10,12,15], taxi:[0,10,10], hotel:[1,2,3], hair:[10,10,15], bar:[0,0,5], culture:'Tipping is appreciated in Ireland. Restaurants commonly receive 10-15% if service charge is not included; pub tipping is less common.' },
+  se: { name:'Sweden', rest:[0,5,10], taxi:[0,5,10], hotel:[0,1,2], hair:[0,5,10], bar:[0,0,5], culture:'Tipping is optional in Sweden because service wages are high. Rounding up or adding a small tip for good service is enough.' },
+  no: { name:'Norway', rest:[0,5,10], taxi:[0,5,10], hotel:[0,1,2], hair:[0,5,10], bar:[0,0,5], culture:'Tipping is not expected in Norway, but rounding up is appreciated in restaurants and taxis for good service.' },
+  dk: { name:'Denmark', rest:[0,5,10], taxi:[0,5,10], hotel:[0,1,2], hair:[0,5,10], bar:[0,0,5], culture:'Service is included in Denmark. Tipping is optional and usually limited to rounding up or a small extra amount.' },
+  fi: { name:'Finland', rest:[0,0,10], taxi:[0,0,5], hotel:[0,1,2], hair:[0,0,5], bar:[0,0,0], culture:'Tipping is not expected in Finland. Service charges and wages are built into prices; tip only for exceptional service.' },
+  pl: { name:'Poland', rest:[10,10,15], taxi:[0,5,10], hotel:[1,2,3], hair:[5,10,10], bar:[0,0,5], culture:'Tipping is common in Poland at restaurants when service is good. 10% is typical; hand the tip directly to the server when possible.' },
+  cz: { name:'Czech Republic', rest:[10,10,15], taxi:[0,5,10], hotel:[1,2,3], hair:[5,10,10], bar:[0,0,5], culture:'In Czech restaurants, rounding up or adding around 10% is common. Tell the server the final total before they process payment.' },
+  hu: { name:'Hungary', rest:[10,10,15], taxi:[0,5,10], hotel:[1,2,3], hair:[5,10,10], bar:[0,0,5], culture:'Hungary commonly adds service charge, so check the bill first. If not included, 10-15% is normal for restaurant service.' },
+  hr: { name:'Croatia', rest:[5,10,10], taxi:[0,5,10], hotel:[1,2,3], hair:[5,10,10], bar:[0,0,5], culture:'Tipping is appreciated in Croatia, especially along the coast and islands. Round up small bills or leave 5-10% at restaurants.' },
+  si: { name:'Slovenia', rest:[5,10,10], taxi:[0,5,10], hotel:[1,2,3], hair:[5,10,10], bar:[0,0,5], culture:'Tipping is optional in Slovenia but appreciated in restaurants and tourist areas. Rounding up or 5-10% is common.' },
+  mt: { name:'Malta', rest:[5,10,10], taxi:[0,5,10], hotel:[1,2,3], hair:[5,10,10], bar:[0,0,5], culture:'Tipping in Malta is appreciated but not mandatory. 5-10% at restaurants is common if service charge is not included.' },
+  cy: { name:'Cyprus', rest:[5,10,10], taxi:[0,5,10], hotel:[1,2,3], hair:[5,10,10], bar:[0,0,5], culture:'Tipping is welcomed in Cyprus tourist areas. Restaurants may include service; otherwise 5-10% is a good guide.' },
+  is: { name:'Iceland', rest:[0,0,5], taxi:[0,0,5], hotel:[0,1,2], hair:[0,0,5], bar:[0,0,0], culture:'Tipping is not expected in Iceland because service is included and prices are high. A small extra tip is only for exceptional service.' },
+  lu: { name:'Luxembourg', rest:[5,10,10], taxi:[0,5,10], hotel:[1,2,3], hair:[5,10,10], bar:[0,0,5], culture:'Tipping is modest in Luxembourg. Service is often included; rounding up or 5-10% for good service is appreciated.' },
+  mc: { name:'Monaco', rest:[5,10,15], taxi:[5,10,10], hotel:[2,3,5], hair:[10,10,15], bar:[0,5,10], culture:'Monaco follows French Riviera habits: service may be included, but extra tips are common in luxury hotels, restaurants, and private transport.' },
+  ad: { name:'Andorra', rest:[5,10,10], taxi:[0,5,10], hotel:[1,2,3], hair:[5,10,10], bar:[0,0,5], culture:'Tipping in Andorra is optional. Round up or leave 5-10% in restaurants when service is good.' },
+  sm: { name:'San Marino', rest:[5,10,10], taxi:[0,5,10], hotel:[1,2,3], hair:[5,10,10], bar:[0,0,5], culture:'San Marino follows Italian-style tipping. A small extra amount or 5-10% is appreciated but not required.' },
+  me: { name:'Montenegro', rest:[5,10,10], taxi:[0,5,10], hotel:[1,2,3], hair:[5,10,10], bar:[0,0,5], culture:'Tipping is appreciated in Montenegro, especially along the coast. Round up or leave 5-10% at restaurants.' },
+  al: { name:'Albania', rest:[5,10,10], taxi:[0,5,10], hotel:[1,2,3], hair:[5,10,10], bar:[0,0,5], culture:'Tipping is increasingly common in Albania tourist areas. 5-10% at restaurants and small tips for drivers or hotel staff are appreciated.' },
+  tr: { name:'Turkey', rest:[5,10,15], taxi:[0,5,10], hotel:[1,2,3], hair:[10,10,15], bar:[0,5,10], culture:'Tipping is customary in Turkey, especially restaurants, hammams, hotels, and tours. Cash tips are often preferred.' },
+  ma: { name:'Morocco', rest:[5,10,10], taxi:[0,5,10], hotel:[1,2,3], hair:[5,10,10], bar:[0,5,10], culture:'Tipping is common in Morocco and expected in many tourist services. Small cash tips for guides, drivers, porters, and restaurant staff are appreciated.' },
+  eg: { name:'Egypt', rest:[10,10,15], taxi:[0,5,10], hotel:[1,2,3], hair:[10,10,15], bar:[0,5,10], culture:'Tipping, or baksheesh, is common in Egypt. Carry small bills for hotel staff, guides, drivers, and restaurant service.' },
+  il: { name:'Israel', rest:[10,12,15], taxi:[0,0,5], hotel:[1,2,3], hair:[10,10,15], bar:[0,5,10], culture:'Restaurant tipping is common in Israel, usually 10-15% if service is not included. Taxi tipping is not expected.' },
+  fj: { name:'Fiji', rest:[0,0,10], taxi:[0,0,5], hotel:[0,1,2], hair:[0,5,10], bar:[0,0,5], culture:'Tipping is not traditionally expected in Fiji, but resorts may have staff funds or accept tips for excellent service.' },
+  mu: { name:'Mauritius', rest:[5,10,10], taxi:[0,5,10], hotel:[1,2,3], hair:[5,10,10], bar:[0,5,10], culture:'Tipping is appreciated in Mauritius resorts, restaurants, tours, and taxis. 5-10% is a useful guide when service charge is not included.' },
+  sc: { name:'Seychelles', rest:[5,10,10], taxi:[0,5,10], hotel:[1,2,3], hair:[5,10,10], bar:[0,5,10], culture:'Tipping is optional in Seychelles but welcomed in resorts, restaurants, boat tours, and private transfers.' },
+  bs: { name:'Bahamas', rest:[15,15,20], taxi:[10,15,15], hotel:[2,3,5], hair:[10,15,15], bar:[1,2,3], culture:'Tipping is expected in the Bahamas, though some bills include gratuity. Check first, then add more only if needed.' },
+  bb: { name:'Barbados', rest:[10,15,15], taxi:[10,10,15], hotel:[2,3,5], hair:[10,15,15], bar:[0,10,15], culture:'Tipping is common in Barbados tourist services. Restaurants may add service charge; if not, 10-15% is typical.' },
+  jm: { name:'Jamaica', rest:[10,15,15], taxi:[10,10,15], hotel:[2,3,5], hair:[10,15,15], bar:[0,10,15], culture:'Tipping is common in Jamaica, especially restaurants, tours, resorts, and private drivers. Some all-inclusive resorts have their own policies.' },
+  do: { name:'Dominican Republic', rest:[10,10,15], taxi:[0,10,15], hotel:[1,2,3], hair:[10,10,15], bar:[0,10,15], culture:'A service charge may be added in the Dominican Republic, but extra tips are still appreciated by servers, hotel staff, and tour guides.' },
+  cu: { name:'Cuba', rest:[10,10,15], taxi:[0,5,10], hotel:[1,2,3], hair:[5,10,10], bar:[0,5,10], culture:'Tipping is important in Cuba tourist services. Carry small cash for restaurants, hotels, guides, drivers, and musicians.' },
   za: { name:'South Africa', rest:[10,12,15], taxi:[0,10,15], hotel:[2,3,5], hair:[10,12,15], bar:[5,10,15], culture:'Tipping is important in South Africa where unemployment is high and wages are low. 10–15% at restaurants is standard. Airport and parking lot attendants expect R5–20.' }
 };
 function updateTipInfo() {
@@ -1052,7 +1276,14 @@ function calcTip() {
   const serviceEl = document.querySelector('#tip-service .pill.active');
   const service = serviceEl ? serviceEl.textContent.trim().split(' ')[1].toLowerCase() : 'restaurant';
   const d = tipData[country];
-  const sym = { USD:'$', EUR:'€', GBP:'£', JPY:'¥', AUD:'A$', CAD:'C$', SGD:'S$', AED:'AED ', THB:'฿', BRL:'R$' };
+  const sym = {
+    USD:'$', EUR:'€', GBP:'£', JPY:'¥', AUD:'A$', CAD:'C$', SGD:'S$', AED:'AED ', THB:'฿', BRL:'R$',
+    CNY:'¥', HKD:'HK$', TWD:'NT$', KRW:'₩', INR:'₹', IDR:'Rp ', MYR:'RM ', PHP:'₱', VND:'₫',
+    KHR:'៛', LAK:'₭', MMK:'K ', BND:'B$', CHF:'CHF ', SEK:'kr ', NOK:'kr ', DKK:'kr ',
+    PLN:'zł ', CZK:'Kč ', HUF:'Ft ', TRY:'₺', ZAR:'R ', MXN:'$', NZD:'NZ$', MAD:'MAD ',
+    EGP:'E£', ILS:'₪', ISK:'kr ', FJD:'FJ$', MUR:'Rs ', SCR:'SR ', LKR:'Rs ', NPR:'Rs ',
+    MVR:'Rf ', XCD:'EC$'
+  };
   const s = sym[currency] || '$';
   let rates;
   if(service.includes('taxi')) rates = d.taxi;
@@ -1222,6 +1453,9 @@ window.onload = () => {
   initBudgetSliders();
   updateBagInfo();
   updateTipInfo();
+  const initialPage = location.hash ? location.hash.replace('#', '') : 'home';
+  if(document.getElementById('page-' + initialPage)) showPage(initialPage);
+  else updatePageMeta('home');
 };
 </script>
 </body>
