@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>TravelKit - Free Travel Calculators: Jet Lag, Baggage, Tips, Packing & Budget</title>
   <meta name="description" content="Free travel calculators and planners for smarter trips: jet lag recovery, airline baggage fees, country tipping etiquette, packing checklist, and travel budget calculator.">
-  <meta name="keywords" content="travel calculator, free travel tools, jet lag calculator, baggage fee calculator, tip calculator by country, tipping etiquette, packing list generator, travel budget calculator, Southeast Asia travel tips, Europe travel tips, island travel tips">
+  <meta name="keywords" content="travel calculator, free travel tools, jet lag calculator, airline baggage fee calculator, checked bag fee calculator, low cost airline baggage fees, tip calculator by country, tipping etiquette, packing list generator, travel budget calculator, Southeast Asia travel tips, Europe travel tips, island travel tips">
   <meta name="robots" content="index, follow, max-image-preview:large">
   <meta name="author" content="TravelKit">
   <meta name="theme-color" content="#E85D3A">
@@ -592,11 +592,42 @@
           <option value="american">American Airlines</option>
           <option value="southwest">Southwest Airlines</option>
           <option value="spirit">Spirit Airlines</option>
+          <option value="frontier">Frontier Airlines</option>
+          <option value="alaska">Alaska Airlines</option>
           <option value="jetblue">JetBlue</option>
+          <option value="aircanada">Air Canada</option>
+          <option value="westjet">WestJet</option>
+          <option value="british">British Airways</option>
+          <option value="airfrance">Air France</option>
+          <option value="klm">KLM</option>
           <option value="lufthansa">Lufthansa</option>
+          <option value="swiss">SWISS</option>
+          <option value="austrian">Austrian Airlines</option>
+          <option value="iberia">Iberia</option>
+          <option value="tap">TAP Air Portugal</option>
+          <option value="ryanair">Ryanair</option>
+          <option value="easyjet">easyJet</option>
+          <option value="turkish">Turkish Airlines</option>
+          <option value="qatar">Qatar Airways</option>
+          <option value="etihad">Etihad Airways</option>
           <option value="emirates">Emirates</option>
           <option value="singapore">Singapore Airlines</option>
           <option value="cathay">Cathay Pacific</option>
+          <option value="ana">ANA</option>
+          <option value="jal">Japan Airlines</option>
+          <option value="korean">Korean Air</option>
+          <option value="asiana">Asiana Airlines</option>
+          <option value="thai">Thai Airways</option>
+          <option value="vietnam">Vietnam Airlines</option>
+          <option value="malaysia">Malaysia Airlines</option>
+          <option value="airasia">AirAsia</option>
+          <option value="cebu">Cebu Pacific</option>
+          <option value="garuda">Garuda Indonesia</option>
+          <option value="eva">EVA Air</option>
+          <option value="chinaairlines">China Airlines</option>
+          <option value="qantas">Qantas</option>
+          <option value="virginaustralia">Virgin Australia</option>
+          <option value="airnz">Air New Zealand</option>
         </select>
       </div>
       <div class="form-grid">
@@ -1148,16 +1179,47 @@ function calcJetLag() {
 
 // ===== BAGGAGE CALCULATOR =====
 const airlines = {
-  united:    { name:'United Airlines',     b1:35, b2:45, heavy:100, business:0, info:'United MileagePlus members and co-branded card holders may receive free bags.' },
-  delta:     { name:'Delta Air Lines',     b1:35, b2:45, heavy:100, business:0, info:'Delta SkyMiles Medallion members receive free checked bags based on status level.' },
-  american:  { name:'American Airlines',   b1:35, b2:45, heavy:100, business:0, info:'AAdvantage credit card holders get the first bag free on domestic flights.' },
-  southwest: { name:'Southwest Airlines',  b1:0,  b2:0,  heavy:75,  business:0, info:'Southwest offers 2 free checked bags for ALL passengers — the best policy in the US.' },
-  spirit:    { name:'Spirit Airlines',     b1:49, b2:60, heavy:100, business:0, info:'Spirit charges for carry-on bags too. Pre-book bags online for lower rates.' },
-  jetblue:   { name:'JetBlue',             b1:35, b2:45, heavy:100, business:0, info:'JetBlue Mosaic members receive free checked bags.' },
-  lufthansa: { name:'Lufthansa',           b1:0,  b2:65, heavy:80,  business:0, info:'All Lufthansa fares include at least 1 checked bag. Business class: 2 bags free.' },
-  emirates:  { name:'Emirates',            b1:0,  b2:0,  heavy:80,  business:0, info:'Emirates economy includes 25–35kg allowance. Business: 40kg.' },
-  singapore: { name:'Singapore Airlines',  b1:0,  b2:0,  heavy:80,  business:0, info:'Singapore Airlines economy includes 25–30kg. Business class: 40kg.' },
-  cathay:    { name:'Cathay Pacific',      b1:0,  b2:0,  heavy:80,  business:0, info:'Cathay Pacific economy: 23kg checked allowance included. Business: 30kg.' }
+  united:    { name:'United Airlines',     b1:35, b2:45, heavy:100, business:0, info:'United fees vary by route. MileagePlus status and co-branded cards may include free checked bags.' },
+  delta:     { name:'Delta Air Lines',     b1:35, b2:45, heavy:100, business:0, info:'Delta fees vary by route. SkyMiles Medallion status and some cards may include free checked bags.' },
+  american:  { name:'American Airlines',   b1:35, b2:45, heavy:100, business:0, info:'American fees vary by route. AAdvantage status and eligible cards may include free checked bags.' },
+  southwest: { name:'Southwest Airlines',  b1:0,  b2:0,  heavy:75,  business:0, info:'Southwest usually includes 2 checked bags. Overweight and oversized charges can still apply.' },
+  spirit:    { name:'Spirit Airlines',     b1:49, b2:60, heavy:100, business:0, info:'Spirit charges for carry-on and checked bags. Prices vary strongly by route and booking time.' },
+  frontier:  { name:'Frontier Airlines',   b1:45, b2:60, heavy:100, business:0, info:'Frontier bag prices vary by route and are usually cheaper when added before airport check-in.' },
+  alaska:    { name:'Alaska Airlines',     b1:35, b2:45, heavy:100, business:0, info:'Alaska often charges per checked bag on domestic fares. Elite status and some cards may include bags.' },
+  jetblue:   { name:'JetBlue',             b1:35, b2:50, heavy:150, business:0, info:'JetBlue baggage depends on fare type. Blue Basic usually has stricter bag rules.' },
+  aircanada: { name:'Air Canada',          b1:35, b2:50, heavy:100, business:0, info:'Air Canada fees vary by destination and fare. Some international fares include the first checked bag.' },
+  westjet:   { name:'WestJet',             b1:35, b2:55, heavy:100, business:0, info:'WestJet baggage fees depend on fare bundle and route. Premium and elite benefits may include bags.' },
+  british:   { name:'British Airways',     b1:0,  b2:90, heavy:100, business:0, info:'British Airways long-haul fares often include checked baggage, while Basic fares may not.' },
+  airfrance: { name:'Air France',          b1:0,  b2:75, heavy:100, business:0, info:'Air France allowance varies by cabin, route, and fare family. Economy Light may exclude checked bags.' },
+  klm:       { name:'KLM',                 b1:0,  b2:75, heavy:100, business:0, info:'KLM baggage rules vary by route and ticket type. Light fares may require paid checked baggage.' },
+  lufthansa: { name:'Lufthansa',           b1:0,  b2:75, heavy:100, business:0, info:'Many Lufthansa fares include at least 1 checked bag. Economy Light often requires a paid bag.' },
+  swiss:     { name:'SWISS',               b1:0,  b2:75, heavy:100, business:0, info:'SWISS baggage allowance depends on route and fare. Economy Light may not include checked baggage.' },
+  austrian:  { name:'Austrian Airlines',   b1:0,  b2:75, heavy:100, business:0, info:'Austrian Airlines baggage rules depend on route and fare family.' },
+  iberia:    { name:'Iberia',              b1:0,  b2:75, heavy:100, business:0, info:'Iberia baggage depends on route and fare. Basic fares may charge for checked baggage.' },
+  tap:       { name:'TAP Air Portugal',    b1:0,  b2:85, heavy:110, business:0, info:'TAP checked baggage varies by fare and destination. Discount fares may not include a checked bag.' },
+  ryanair:   { name:'Ryanair',             b1:35, b2:55, heavy:80,  business:0, info:'Ryanair bag prices vary by route, season, and purchase timing. Add bags online early.' },
+  easyjet:   { name:'easyJet',             b1:35, b2:55, heavy:80,  business:0, info:'easyJet sells checked bags by weight band and route. Airport bag fees are usually higher.' },
+  turkish:   { name:'Turkish Airlines',    b1:0,  b2:80, heavy:100, business:0, info:'Turkish Airlines usually includes checked baggage on many international fares, varying by route.' },
+  qatar:     { name:'Qatar Airways',       b1:0,  b2:0,  heavy:100, business:0, info:'Qatar Airways often uses weight-based allowance. Extra and overweight fees vary by route.' },
+  etihad:    { name:'Etihad Airways',      b1:0,  b2:0,  heavy:100, business:0, info:'Etihad baggage is route and fare based. Check your ticket allowance before adding extra bags.' },
+  emirates:  { name:'Emirates',            b1:0,  b2:0,  heavy:100, business:0, info:'Emirates often includes checked baggage by total weight. Allowance depends on route, fare, and cabin.' },
+  singapore: { name:'Singapore Airlines',  b1:0,  b2:0,  heavy:100, business:0, info:'Singapore Airlines usually includes checked baggage on full-service fares; allowance varies by route.' },
+  cathay:    { name:'Cathay Pacific',      b1:0,  b2:0,  heavy:100, business:0, info:'Cathay Pacific typically includes checked baggage on many international fares.' },
+  ana:       { name:'ANA',                 b1:0,  b2:0,  heavy:100, business:0, info:'ANA international economy commonly includes checked baggage, but domestic and special fares differ.' },
+  jal:       { name:'Japan Airlines',      b1:0,  b2:0,  heavy:100, business:0, info:'Japan Airlines often includes checked baggage on international fares. Check route and fare rules.' },
+  korean:    { name:'Korean Air',          b1:0,  b2:0,  heavy:100, business:0, info:'Korean Air allowance depends on route, cabin, and fare. Extra fees vary by zone.' },
+  asiana:    { name:'Asiana Airlines',     b1:0,  b2:0,  heavy:100, business:0, info:'Asiana baggage allowance varies by route and cabin. Check the allowance printed on your ticket.' },
+  thai:      { name:'Thai Airways',        b1:0,  b2:0,  heavy:100, business:0, info:'Thai Airways often uses weight allowance on international routes. Extra baggage pricing varies.' },
+  vietnam:   { name:'Vietnam Airlines',    b1:0,  b2:65, heavy:100, business:0, info:'Vietnam Airlines often includes checked baggage; allowance varies by domestic or international route.' },
+  malaysia:  { name:'Malaysia Airlines',   b1:0,  b2:65, heavy:100, business:0, info:'Malaysia Airlines baggage depends on fare family and route.' },
+  airasia:   { name:'AirAsia',             b1:30, b2:50, heavy:80,  business:0, info:'AirAsia checked bags are paid add-ons with prices varying by route, weight, and booking time.' },
+  cebu:      { name:'Cebu Pacific',        b1:28, b2:45, heavy:75,  business:0, info:'Cebu Pacific checked bags are paid add-ons. Prices vary by route and selected weight allowance.' },
+  garuda:    { name:'Garuda Indonesia',    b1:0,  b2:60, heavy:90,  business:0, info:'Garuda Indonesia full-service fares often include checked baggage; route and cabin determine allowance.' },
+  eva:       { name:'EVA Air',             b1:0,  b2:0,  heavy:100, business:0, info:'EVA Air commonly includes checked baggage on international fares. Extra fees vary by route.' },
+  chinaairlines:{ name:'China Airlines',   b1:0,  b2:0,  heavy:100, business:0, info:'China Airlines allowance varies by route, cabin, and fare.' },
+  qantas:    { name:'Qantas',              b1:0,  b2:90, heavy:100, business:0, info:'Qantas fares often include checked baggage, especially international routes. Extra baggage varies by zone.' },
+  virginaustralia:{ name:'Virgin Australia', b1:35, b2:55, heavy:100, business:0, info:'Virgin Australia checked baggage depends on fare and route. Some domestic fares include one bag.' },
+  airnz:     { name:'Air New Zealand',     b1:0,  b2:75, heavy:100, business:0, info:'Air New Zealand baggage depends on fare type. Seat-only fares may exclude checked baggage.' }
 };
 function updateBagInfo() {
   const a = airlines[document.getElementById('bg-airline').value];
