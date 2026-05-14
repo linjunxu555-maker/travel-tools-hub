@@ -310,6 +310,7 @@
     .tip-mid { background: #FFF8E1; color: #F57F17; }
     .tip-low { background: #FFEBEE; color: #C62828; }
     .tip-none { background: var(--sand); color: var(--text-muted); }
+    .card:has(.tip-table) { overflow-x: auto; -webkit-overflow-scrolling: touch; }
 
     /* FOOTER */
     footer {
@@ -343,10 +344,21 @@
       nav { padding: 0 12px; }
       .nav-tools { display: none; }
       .hero { padding: 48px 16px 56px; }
-      .hero-cards { gap: 8px; }
-      .hero-card { min-width: 130px; padding: 14px 16px; }
+      .hero p { max-width: 100%; overflow-wrap: anywhere; }
+      .hero-cards {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 8px;
+        max-width: 340px;
+        margin: 0 auto;
+      }
+      .hero-card { min-width: 0; padding: 14px 12px; text-align: center; }
+      .hero-card:last-child { grid-column: 1 / -1; }
       .tool-wrap { padding: 28px 16px 60px; }
+      .tool-title { font-size: 27px; overflow-wrap: anywhere; }
+      .tool-subtitle { overflow-wrap: anywhere; }
       .card { padding: 20px; }
+      .tip-table { min-width: 560px; font-size: 12px; }
     }
   </style>
 </head>
